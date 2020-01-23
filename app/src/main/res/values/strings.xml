@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Cisco RC</string>
+    <string name="action_settings">Settings</string>
+    <string name="btnConnect">Подключиться</string>
+    <string name="hintIP">IP адрес</string>
+    <string name="hintlogin">Имя пользователя</string>
+    <string name="hintPassw">Пароль</string>
+</resources>
