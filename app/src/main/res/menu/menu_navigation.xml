@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/dial"
+        android:title="Dial"
+        android:icon="@drawable/ic_dialer_sip_black_24dp"/>
+    <item
+        android:id="@+id/phonebook"
+        android:title="Phonebook"
+        android:icon="@drawable/ic_contact_phone_black_24dp"/>
+    <item
+        android:id="@+id/info"
+        android:title="Info"
+        android:icon="@drawable/ic_info_black_24dp"/>
+</menu>

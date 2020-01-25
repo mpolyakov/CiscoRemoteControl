@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
-import com.kts.ciscorc.controller.ConnectionObject;
+import com.kts.ciscorc.data.ConnectionObject;
 
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
@@ -49,6 +49,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (connectionObject.connect().equals("OK")){
                     //Intent
+                    Intent intent = new Intent(LoginActivity.this, InfoActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
 
             }

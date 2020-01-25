@@ -1,4 +1,4 @@
-package com.kts.ciscorc.controller;
+package com.kts.ciscorc.data;
 
 import java.util.List;
 
