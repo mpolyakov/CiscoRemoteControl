@@ -4,106 +4,76 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
-import com.kts.ciscorc.data.ConnectionObject;
-
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.X509Certificate;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
+import com.kts.ciscorc.data.ConnectionClass;
 
 public class LoginActivity extends AppCompatActivity {
-    TextInputEditText ipAddr;
-    TextInputEditText login;
-    TextInputEditText password;
-    MaterialButton buttonConnect;
-    TextView textView;
+    TextInputEditText mIpAddr;
+    TextInputEditText mLogin;
+    TextInputEditText mPassword;
+    MaterialButton mButtonConnect;
+    TextView mTextView;
     String connectionResponse;
 
-    static {
-        //disableSslVerification();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        disableSslVerification();
         initUI();
 
-        final ConnectionObject connectionObject = new ConnectionObject();
+//        final ConnectionClass connectionClass = new ConnectionClass();
 
-        buttonConnect.setOnClickListener(new View.OnClickListener() {
+        mButtonConnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (connectionObject.connect().equals("OK")){
-                    //Intent
-                    Intent intent = new Intent(LoginActivity.this, InfoActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
+                MainActivity.ipAddress = mIpAddr.getText().toString();
+                MainActivity.login = mLogin.getText().toString();
+                MainActivity.password = mPassword.getText().toString();
+
+                Intent intent = new Intent(LoginActivity.this, InfoActivity.class);
+                startActivity(intent);
+
+//                final Handler handler = new Handler();
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        ConnectionClass.disableSslVerification();
+//                        final String response = ConnectionClass.connect(MainActivity.ipAddress, MainActivity.login, MainActivity.password);
+//                        handler.post(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                mTextView.setText(response);
+//                                if (response.equals("OK")){
+//                                    //Intent
+//                                    Intent intent = new Intent(LoginActivity.this, InfoActivity.class);
+//                                    startActivity(intent);
+////                    finish();
+//                                }
+//
+//                            }
+//                        });
+//                    }
+//                }).start();
+
 
             }
         });
-
-
-
     }
 
     private void initUI() {
-        ipAddr = findViewById(R.id.textInputIP);
-        login = findViewById(R.id.textInputLogin);
-        password = findViewById(R.id.textInputPassword);
-        buttonConnect = findViewById(R.id.material_button);
-        textView = findViewById(R.id.textViewConnStatus);
+        mIpAddr = findViewById(R.id.textInputIP);
+        mLogin = findViewById(R.id.textInputLogin);
+        mPassword = findViewById(R.id.textInputPassword);
+        mButtonConnect = findViewById(R.id.material_button);
+        mTextView = findViewById(R.id.textViewConnStatus);
     }
 
-    //Отключение проверки сертификата ->
-    private static void disableSslVerification() {
-        try
-        {
-            // Create a trust manager that does not validate certificate chains
-            TrustManager[] trustAllCerts = new TrustManager[] {new X509TrustManager() {
-                public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                    return null;
-                }
-                public void checkClientTrusted(X509Certificate[] certs, String authType) {
-                }
-                public void checkServerTrusted(X509Certificate[] certs, String authType) {
-                }
-            }
-            };
 
-            // Install the all-trusting trust manager
-            SSLContext sc = SSLContext.getInstance("SSL");
-            sc.init(null, trustAllCerts, new java.security.SecureRandom());
-            HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-
-            // Create all-trusting host name verifier
-            HostnameVerifier allHostsValid = new HostnameVerifier() {
-                public boolean verify(String hostname, SSLSession session) {
-                    return true;
-                }
-            };
-
-            // Install the all-trusting host verifier
-            HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (KeyManagementException e) {
-            e.printStackTrace();
-        }
-    }
-    // <- Отключение проверки сертификата
 }
