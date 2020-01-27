@@ -1,21 +1,15 @@
 package com.kts.ciscorc.data;
 
-import android.os.Build;
-import android.os.Handler;
-import android.util.Log;
-
-import androidx.annotation.RequiresApi;
-
 import javax.net.ssl.*;
 import javax.xml.bind.DatatypeConverter;
+
 import java.io.*;
 import java.net.*;
-import java.nio.charset.StandardCharsets;
+
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
 import java.util.Base64;
-import java.util.stream.Collectors;
 
 public class ConnectionClass {
     public static String ipAddress;
@@ -23,15 +17,16 @@ public class ConnectionClass {
 
     //Отключение проверки сертификата ->
     public static void disableSslVerification() {
-        try
-        {
+        try {
             // Create a trust manager that does not validate certificate chains
-            TrustManager[] trustAllCerts = new TrustManager[] {new X509TrustManager() {
+            TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
                 public java.security.cert.X509Certificate[] getAcceptedIssuers() {
                     return null;
                 }
+
                 public void checkClientTrusted(X509Certificate[] certs, String authType) {
                 }
+
                 public void checkServerTrusted(X509Certificate[] certs, String authType) {
                 }
             }
@@ -56,46 +51,48 @@ public class ConnectionClass {
     }
     // <- Отключение проверки сертификата
 
-    public static String connect(String ipaddress, String login, String password){
+    public static String connect(String ipaddress, String login, String password) {
+        disableSslVerification();
         String uri = null;
         //Логика подключения к терминалу, авторизация
         try {
-            uri = "http://" + ipaddress + "/getxml?location=/Status/SystemUnit";
+            uri = "https://" + ipaddress + "/getxml?location=/Status/SystemUnit";
             url = new URL(uri);
             String userCredentials = login + ":" + password;
 //            String basicAuth = "Basic " + new String(Base64.getEncoder().encode(userCredentials.getBytes()));  //Работает только с версии API 26
             String basicAuth = "Basic " + DatatypeConverter.printBase64Binary(userCredentials.getBytes());  //Работает со старыми версиями Java
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
             connection.setRequestProperty("Authorization", basicAuth);
             connection.setRequestMethod("GET");
-            connection.setReadTimeout(3000);
-            connection.setConnectTimeout(3000);
+            connection.setConnectTimeout(5000);
             connection.connect();
 
             return connection.getResponseMessage();
 
-        } catch (SocketTimeoutException e){
+        } catch (SocketTimeoutException e) {
             return e.toString() + "Запрос не авторизован";
         } catch (UnknownHostException e) {
             return "UnknownHostException, Неизвестный хост";
         } catch (IOException e) {
-            return "IOException, Запрос не авторизован";
-        } catch(Exception e) {
+            e.printStackTrace();
+            return uri + "IOException, Запрос не авторизован";
+        } catch (Exception e) {
             e.printStackTrace();
             return e.toString() + "Видеотерминал не отвечает";
         }
 
     }
 
-    public static String getSystemInfo(String ipaddress, String login, String password){
+    public static String getSystemInfo(String ipaddress, String login, String password) {
+        disableSslVerification();
         String uri = null;
         try {
-            uri = "http://" + ipaddress + "/getxml?location=/Status/SystemUnit";
+            uri = "https://" + ipaddress + "/getxml?location=/Status/SystemUnit";
             url = new URL(uri);
             String userCredentials = login + ":" + password;
 //            String basicAuth = "Basic " + new String(Base64.getEncoder().encode(userCredentials.getBytes()));  //Работает только с версии API 26
             String basicAuth = "Basic " + DatatypeConverter.printBase64Binary(userCredentials.getBytes());  //Работает со старыми версиями Java
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
             connection.setRequestProperty("Authorization", basicAuth);
             connection.setRequestMethod("GET");
             connection.setReadTimeout(3000);
@@ -108,35 +105,78 @@ public class ConnectionClass {
             while ((line = in.readLine()) != null) {
                 result += line;
             }
-
             return result;
 
-
-        } catch (SocketTimeoutException e){
+        } catch (SocketTimeoutException e) {
             return "SocketTimeoutException, Видеотерминал не отвечает";
         } catch (UnknownHostException e) {
             return "UnknownHostException, Неизвестный хост";
         } catch (IOException e) {
             return "IOException, Запрос не авторизован";
-        } catch(Exception e) {
+        } catch (Exception e) {
+            e.printStackTrace();
+            return e.toString() + "Видеотерминал не отвечает";
+        }
+    }
+
+    public static String getPhonebook(String ipaddress, String login, String password) {
+        //Запрос и выдача адресной книги
+        String body = "<Command> \n" +
+                "<Phonebook> \n" +
+                "<Search> \n" +
+                "<SearchString>\"\"</SearchString>\n" +
+                "</Search> \n" +
+                "</Phonebook> \n" +
+                "</Command>\n";
+        disableSslVerification();
+        String uri = null;
+        try {
+            uri = "https://" + ipaddress + "/putxml";
+            url = new URL(uri);
+            String userCredentials = login + ":" + password;
+//            String basicAuth = "Basic " + new String(Base64.getEncoder().encode(userCredentials.getBytes()));  //Работает только с версии API 26
+            String basicAuth = "Basic " + DatatypeConverter.printBase64Binary(userCredentials.getBytes());  //Работает со старыми версиями Java
+            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+            connection.setRequestProperty("Authorization", basicAuth);
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "text/xml");
+            connection.setReadTimeout(3000);
+            connection.setConnectTimeout(3000);
+            connection.connect();
+
+            OutputStream output = new BufferedOutputStream(connection.getOutputStream());               //2-запись в поток и отправка
+            output.write(body.getBytes());                                                              //2-запись в поток и отправка
+            output.flush();                                                                             //2-запись в поток и отправка
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String result = "";
+            String line;
+            while ((line = in.readLine()) != null) {
+                result += line;
+            }
+            return result;
+
+        } catch (SocketTimeoutException e) {
+            return "SocketTimeoutException, Видеотерминал не отвечает";
+        } catch (UnknownHostException e) {
+            return "UnknownHostException, Неизвестный хост";
+        } catch (IOException e) {
+            return "IOException, Запрос не авторизован";
+        } catch (Exception e) {
             e.printStackTrace();
             return e.toString() + "Видеотерминал не отвечает";
         }
 
     }
+    public static String sendCommand(String ipaddress, String login, String password, String body){
+        //Отправка команд
+        return "XML";
 
+    }
 
-//    public static List<String> runDiagnostic(){
+    //    public static List<String> runDiagnostic(){
 //        //Запуск диагностики терминала, выдача результата
 //
 //        return null;
-//    }
-//    public static void getPhonebook(){
-//        //Запрос и выдача адресной книги
-//
-//    }
-//    public static void sendCommand(){
-//        //Отправка команд
-//
 //    }
 }

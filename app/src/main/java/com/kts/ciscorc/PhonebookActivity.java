@@ -5,11 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.kts.ciscorc.data.ConnectionClass;
 
 public class PhonebookActivity extends AppCompatActivity {
+    TextView textView;
+    String resultText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,5 +46,24 @@ public class PhonebookActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        textView = findViewById(R.id.textViewPhonebook);
+
+        final Handler handler = new Handler();
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                resultText = ConnectionClass.getPhonebook(MainActivity.ipAddress, MainActivity.login, MainActivity.password);
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        textView.setText(resultText);
+                    }
+                });
+            }
+        }).start();
+
+
     }
 }
