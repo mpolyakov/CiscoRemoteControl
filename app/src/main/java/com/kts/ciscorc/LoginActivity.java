@@ -37,30 +37,26 @@ public class LoginActivity extends AppCompatActivity {
                 MainActivity.login = mLogin.getText().toString();
                 MainActivity.password = mPassword.getText().toString();
 
-                Intent intent = new Intent(LoginActivity.this, InfoActivity.class);
-                startActivity(intent);
 
-//                final Handler handler = new Handler();
-//                new Thread(new Runnable() {
-//                    @Override
-//                    public void run() {
+                final Handler handler = new Handler();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
 //                        ConnectionClass.disableSslVerification();
-//                        final String response = ConnectionClass.connect(MainActivity.ipAddress, MainActivity.login, MainActivity.password);
-//                        handler.post(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                mTextView.setText(response);
-//                                if (response.equals("OK")){
-//                                    //Intent
-//                                    Intent intent = new Intent(LoginActivity.this, InfoActivity.class);
-//                                    startActivity(intent);
-////                    finish();
-//                                }
-//
-//                            }
-//                        });
-//                    }
-//                }).start();
+                        final String response = ConnectionClass.connect(MainActivity.ipAddress, MainActivity.login, MainActivity.password);
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                mTextView.setText(response);
+                                if (response.equals("OK")){
+                                    Intent intent = new Intent(LoginActivity.this, InfoActivity.class);
+                                    startActivity(intent);
+                                }
+
+                            }
+                        });
+                    }
+                }).start();
 
 
             }
