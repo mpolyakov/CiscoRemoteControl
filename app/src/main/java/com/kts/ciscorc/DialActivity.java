@@ -31,10 +31,12 @@ public class DialActivity extends AppCompatActivity {
                     case R.id.phonebook:
                         startActivity(new Intent(getApplicationContext(), PhonebookActivity.class));
                         overridePendingTransition(0,0);
+                        finish();
                         return true;
                     case R.id.info:
                         startActivity(new Intent(getApplicationContext(), InfoActivity.class));
                         overridePendingTransition(0,0);
+                        finish();
                         return true;
                     case R.id.dial:
                         return true;

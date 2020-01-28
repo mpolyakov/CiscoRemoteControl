@@ -37,10 +37,12 @@ public class PhonebookActivity extends AppCompatActivity {
                     case R.id.info:
                         startActivity(new Intent(getApplicationContext(), InfoActivity.class));
                         overridePendingTransition(0,0);
+                        finish();
                         return true;
                     case R.id.dial:
                         startActivity(new Intent(getApplicationContext(), DialActivity.class));
                         overridePendingTransition(0,0);
+                        finish();
                         return true;
                 }
                 return false;

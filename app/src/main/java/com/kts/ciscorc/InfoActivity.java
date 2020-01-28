@@ -49,12 +49,14 @@ public class InfoActivity extends AppCompatActivity {
                     case R.id.phonebook:
                         startActivity(new Intent(getApplicationContext(), PhonebookActivity.class));
                         overridePendingTransition(0,0);
+                        finish();
                         return true;
                     case R.id.info:
                         return true;
                     case R.id.dial:
                         startActivity(new Intent(getApplicationContext(), DialActivity.class));
                         overridePendingTransition(0,0);
+                        finish();
                         return true;
                 }
                 return false;
