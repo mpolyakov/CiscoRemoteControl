@@ -20,6 +20,7 @@ public class PhonebookActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phonebook);
+        final MainPresenter presenter = MainPresenter.getInstance();
 
         //Инициализация меню
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -51,12 +52,14 @@ public class PhonebookActivity extends AppCompatActivity {
 
         textView = findViewById(R.id.textViewPhonebook);
 
+
         final Handler handler = new Handler();
         new Thread(new Runnable() {
 
             @Override
             public void run() {
-                resultText = ConnectionClass.getPhonebook(MainActivity.ipAddress, MainActivity.login, MainActivity.password);
+                String body = "<Command><Phonebook><Search><SearchString></SearchString></Search></Phonebook></Command>";
+                resultText = ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
                 handler.post(new Runnable() {
                     @Override
                     public void run() {

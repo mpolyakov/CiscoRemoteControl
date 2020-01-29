@@ -1,30 +1,16 @@
 package com.kts.ciscorc;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.kts.ciscorc.data.ConnectionClass;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
-import java.util.stream.Collectors;
 
 public class InfoActivity extends AppCompatActivity {
     TextView textView;
@@ -34,6 +20,7 @@ public class InfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
+        final MainPresenter presenter = MainPresenter.getInstance();
 
         //Инициализация меню
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -45,17 +32,17 @@ public class InfoActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
+                switch (menuItem.getItemId()) {
                     case R.id.phonebook:
                         startActivity(new Intent(getApplicationContext(), PhonebookActivity.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         finish();
                         return true;
                     case R.id.info:
                         return true;
                     case R.id.dial:
                         startActivity(new Intent(getApplicationContext(), DialActivity.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         finish();
                         return true;
                 }
@@ -70,7 +57,7 @@ public class InfoActivity extends AppCompatActivity {
 
             @Override
             public void run() {
-                resultText = ConnectionClass.getSystemInfo(MainActivity.ipAddress, MainActivity.login, MainActivity.password);
+                resultText = ConnectionClass.methodGET(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), "/getxml?location=/Status/SystemUnit");
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -79,9 +66,6 @@ public class InfoActivity extends AppCompatActivity {
                 });
             }
         }).start();
-
-
-
 
 
 //        try {

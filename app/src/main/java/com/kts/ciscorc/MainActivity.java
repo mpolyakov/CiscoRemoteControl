@@ -14,9 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
-    public static String ipAddress;
-    public static String login;
-    public static String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

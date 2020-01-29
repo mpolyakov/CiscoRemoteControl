@@ -5,4 +5,20 @@
     <string name="hintIP">IP адрес</string>
     <string name="hintlogin">Имя пользователя</string>
     <string name="hintPassw">Пароль</string>
+
+
+
+<!--    GET uri's-->
+    <string name="systemUnit">/getxml?location=/Status/SystemUnit</string>
+
+
+<!--    POST body's-->
+
+
+    <string name="dial13"></string>
+    <string name="allPhonebook"></string>
+
+
+
+
 </resources>

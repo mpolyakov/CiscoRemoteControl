@@ -12,7 +12,6 @@ import java.security.cert.X509Certificate;
 import java.util.Base64;
 
 public class ConnectionClass {
-    public static String ipAddress;
     public static URL url;
 
     //Отключение проверки сертификата ->
@@ -70,12 +69,11 @@ public class ConnectionClass {
             return connection.getResponseMessage();
 
         } catch (SocketTimeoutException e) {
-            return e.toString() + "Запрос не авторизован";
+            return e.toString() + "Видеотерминал не отвечает";
         } catch (UnknownHostException e) {
-            return "UnknownHostException, Неизвестный хост";
+            return e.toString() + "Неизвестный хост";
         } catch (IOException e) {
-            e.printStackTrace();
-            return uri + "IOException, Запрос не авторизован";
+            return e.toString() + "Запрос не авторизован";
         } catch (Exception e) {
             e.printStackTrace();
             return e.toString() + "Видеотерминал не отвечает";
@@ -83,11 +81,11 @@ public class ConnectionClass {
 
     }
 
-    public static String getSystemInfo(String ipaddress, String login, String password) {
-        disableSslVerification();
+    public static String methodGET(String ipaddress, String login, String password, String uriGet) {
+//        disableSslVerification();
         String uri = null;
         try {
-            uri = "https://" + ipaddress + "/getxml?location=/Status/SystemUnit";
+            uri = "https://" + ipaddress + uriGet;
             url = new URL(uri);
             String userCredentials = login + ":" + password;
 //            String basicAuth = "Basic " + new String(Base64.getEncoder().encode(userCredentials.getBytes()));  //Работает только с версии API 26
@@ -108,27 +106,20 @@ public class ConnectionClass {
             return result;
 
         } catch (SocketTimeoutException e) {
-            return "SocketTimeoutException, Видеотерминал не отвечает";
+            return e.toString() + "Видеотерминал не отвечает";
         } catch (UnknownHostException e) {
-            return "UnknownHostException, Неизвестный хост";
+            return e.toString() + "Неизвестный хост";
         } catch (IOException e) {
-            return "IOException, Запрос не авторизован";
+            return e.toString() + "Запрос не авторизован";
         } catch (Exception e) {
             e.printStackTrace();
             return e.toString() + "Видеотерминал не отвечает";
         }
     }
 
-    public static String getPhonebook(String ipaddress, String login, String password) {
+    public static String methodPOST(String ipaddress, String login, String password, String body) {
         //Запрос и выдача адресной книги
-        String body = "<Command> \n" +
-                "<Phonebook> \n" +
-                "<Search> \n" +
-                "<SearchString>\"\"</SearchString>\n" +
-                "</Search> \n" +
-                "</Phonebook> \n" +
-                "</Command>\n";
-        disableSslVerification();
+//        disableSslVerification();
         String uri = null;
         try {
             uri = "https://" + ipaddress + "/putxml";
@@ -157,26 +148,16 @@ public class ConnectionClass {
             return result;
 
         } catch (SocketTimeoutException e) {
-            return "SocketTimeoutException, Видеотерминал не отвечает";
+            return e.toString() + "Видеотерминал не отвечает";
         } catch (UnknownHostException e) {
-            return "UnknownHostException, Неизвестный хост";
+            return e.toString() + "Неизвестный хост";
         } catch (IOException e) {
-            return "IOException, Запрос не авторизован";
+            return e.toString() + "Запрос не авторизован";
         } catch (Exception e) {
             e.printStackTrace();
             return e.toString() + "Видеотерминал не отвечает";
         }
 
     }
-    public static String sendCommand(String ipaddress, String login, String password, String body){
-        //Отправка команд
-        return "XML";
 
-    }
-
-    //    public static List<String> runDiagnostic(){
-//        //Запуск диагностики терминала, выдача результата
-//
-//        return null;
-//    }
 }

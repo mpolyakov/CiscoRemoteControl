@@ -27,15 +27,17 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initUI();
+        final MainPresenter presenter = MainPresenter.getInstance();
 
 //        final ConnectionClass connectionClass = new ConnectionClass();
 
         mButtonConnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.ipAddress = mIpAddr.getText().toString();
-                MainActivity.login = mLogin.getText().toString();
-                MainActivity.password = mPassword.getText().toString();
+
+                presenter.setIpAddress(mIpAddr.getText().toString());
+                presenter.setLogin(mLogin.getText().toString());
+                presenter.setPassword(mPassword.getText().toString());
 
 
                 final Handler handler = new Handler();
@@ -43,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 //                        ConnectionClass.disableSslVerification();
-                        final String response = ConnectionClass.connect(MainActivity.ipAddress, MainActivity.login, MainActivity.password);
+                        final String response = ConnectionClass.connect(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword());
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
