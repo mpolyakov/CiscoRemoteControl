@@ -7,17 +7,15 @@
     <string name="hintPassw">Пароль</string>
 
 
-
-<!--    GET uri's-->
+    <!--    GET uri's-->
     <string name="systemUnit">/getxml?location=/Status/SystemUnit</string>
 
 
-<!--    POST body's-->
+    <!--    POST body's-->
 
 
     <string name="dial13"></string>
     <string name="allPhonebook"></string>
-
 
 
 
