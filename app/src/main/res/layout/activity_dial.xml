@@ -8,32 +8,124 @@
 
 
     <FrameLayout
-        android:layout_width="300dp"
         android:id="@+id/fragment_place"
-        android:layout_height="350dp"></FrameLayout>
+        android:layout_width="300dp"
+        android:layout_height="350dp"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/toggleDial"></FrameLayout>
 
-    <Button
-        android:id="@+id/btnFragmentDial"
+
+    <ToggleButton
+        android:id="@+id/toggleDial"
         style="?android:attr/borderlessButtonStyle"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:backgroundTint="@color/colorPrimaryDark"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/toggle_selector"
         android:onClick="changeFragment1"
-        android:text="Dial page"
-        android:textColor="@color/colorPrimary" />
+        android:text="DialPage"
+        android:textOff="DialPage"
+        android:textOn="DialPage" />
 
-    <Button
-        android:id="@+id/btnFragmentSelfView"
+    <ToggleButton
+        android:id="@+id/toggleSelfView"
         style="?android:attr/borderlessButtonStyle"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnFragmentDial"
-        android:layout_alignParentRight="true"
-        android:backgroundTint="@color/colorPrimaryDark"
+        android:layout_below="@+id/toggleDial"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/toggle_selector"
         android:onClick="changeFragment2"
         android:text="SelfView"
-        android:textColor="@color/colorPrimary" />
+        android:textOff="SelfView"
+        android:textOn="SelfView" />
+
+    <LinearLayout
+        android:id="@+id/firstLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_place">
+
+        <Button
+            android:id="@+id/btnDial"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#68de70"
+            android:onClick="acceptDial"
+            android:text="Dial/Accept"
+            android:textColor="@color/colorPrimary"
+            app:cornerRadius="0dp"
+            app:strokeColor="@color/colorPrimary" />
+
+        <Button
+            android:id="@+id/btnDisconnect"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#f55858"
+            android:onClick="rejectDisconnect"
+            android:text="Disconnect/Reject"
+            android:textColor="@color/colorPrimary"
+            app:cornerRadius="0dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/secondLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@+id/firstLinearLayout">
+
+        <Button
+            android:id="@+id/btnSoundDown"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:backgroundTint="#EEEEEE"
+            android:text="SoundDown"
+            android:textColor="@color/colorPrimary"
+            app:cornerRadius="40dp" />
+
+        <Button
+            android:id="@+id/btnSoundUp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:backgroundTint="#EEEEEE"
+            android:text="SoundUp"
+            android:textColor="@color/colorPrimary"
+            app:cornerRadius="40dp" />
+
+        <Button
+            android:id="@+id/btnMicOff"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:backgroundTint="#EEEEEE"
+            android:text="MOff"
+            android:textColor="@color/colorPrimary"
+            app:cornerRadius="40dp" />
+
+        <Button
+            android:id="@+id/btnMicOn"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:backgroundTint="#EEEEEE"
+            android:text="MOn"
+            android:textColor="@color/colorPrimary"
+            app:cornerRadius="50dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/thirddLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/secondLinearLayout">
+
+
+    </LinearLayout>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

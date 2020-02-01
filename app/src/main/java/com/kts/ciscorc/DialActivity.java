@@ -6,25 +6,36 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ToggleButton;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.kts.ciscorc.fragments.FragmentDial;
 import com.kts.ciscorc.fragments.FragmentSelfView;
+
+import static com.kts.ciscorc.data.ConnectionClass.methodGET;
 
 public class DialActivity extends AppCompatActivity {
     FragmentDial fragmentDial;
     FragmentSelfView fragmentSelfView;
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
+    ToggleButton toggleButtonDial;
+    ToggleButton toggleButtonSelfView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dial);
+        getWindow().getDecorView().setBackgroundColor(Color.WHITE);
 
+
+
+        init();
 
         //Инициализация меню
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -53,25 +64,43 @@ public class DialActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-        fragmentDial = new FragmentDial();
-        fragmentSelfView = new FragmentSelfView();
-        fragmentManager = getSupportFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_place, fragmentDial);
-        fragmentTransaction.commit();
-
     }
+
 
     public void changeFragment1(View view) {
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_place, fragmentDial);
         fragmentTransaction.commit();
+        toggleButtonSelfView.setChecked(false);
+        toggleButtonDial.setChecked(true);
     }
 
     public void changeFragment2(View view) {
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_place, fragmentSelfView);
         fragmentTransaction.commit();
+        toggleButtonDial.setChecked(false);
+        toggleButtonSelfView.setChecked(true);
+    }
+
+    public void acceptDial(View view) {
+
+    }
+
+    public void rejectDisconnect(View view) {
+    }
+
+    public void init(){
+        fragmentDial = new FragmentDial();
+        fragmentSelfView = new FragmentSelfView();
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_place, fragmentDial);
+        fragmentTransaction.commit();
+        toggleButtonDial = findViewById(R.id.toggleDial);
+        toggleButtonSelfView = findViewById(R.id.toggleSelfView);
+        toggleButtonDial.setChecked(true);
+
+
     }
 }

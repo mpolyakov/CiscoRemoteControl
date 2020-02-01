@@ -20,6 +20,7 @@ public class InfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
+
         final MainPresenter presenter = MainPresenter.getInstance();
 
         //Инициализация меню
@@ -54,7 +55,6 @@ public class InfoActivity extends AppCompatActivity {
 
         final Handler handler = new Handler();
         new Thread(new Runnable() {
-
             @Override
             public void run() {
                 resultText = ConnectionClass.methodGET(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), "/getxml?location=/Status/SystemUnit");
