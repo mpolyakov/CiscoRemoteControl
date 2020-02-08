@@ -55,7 +55,7 @@ public class ConnectionClass {
         String uri = null;
         //Логика подключения к терминалу, авторизация
         try {
-            uri = "https://" + ipaddress + "/getxml?location=/Status/SystemUnit";
+            uri = "https://" + ipaddress + "/getxml?location=/Status/UserInterface/ContactInfo";
             url = new URL(uri);
             String userCredentials = login + ":" + password;
 //            String basicAuth = "Basic " + new String(Base64.getEncoder().encode(userCredentials.getBytes()));  //Работает только с версии API 26

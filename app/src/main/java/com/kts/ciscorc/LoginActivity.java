@@ -31,8 +31,8 @@ public class LoginActivity extends AppCompatActivity {
 
 //        final ConnectionClass connectionClass = new ConnectionClass();
 
-        Intent intent = new Intent(LoginActivity.this, InfoActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(LoginActivity.this, InfoActivity.class);
+//        startActivity(intent);
 
         mButtonConnect.setOnClickListener(new View.OnClickListener() {
             @Override

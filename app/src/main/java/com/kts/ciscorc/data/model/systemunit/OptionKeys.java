@@ -1,46 +1,43 @@
+
 package com.kts.ciscorc.data.model.systemunit;
 
-public class OptionKeys
-{
-    private String MultiSite;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    private String RemoteMonitoring;
+public class OptionKeys {
 
-    private String Encryption;
+    @SerializedName("Encryption")
+    @Expose
+    private String encryption;
+    @SerializedName("MultiSite")
+    @Expose
+    private String multiSite;
+    @SerializedName("RemoteMonitoring")
+    @Expose
+    private String remoteMonitoring;
 
-    public String getMultiSite ()
-    {
-        return MultiSite;
+    public String getEncryption() {
+        return encryption;
     }
 
-    public void setMultiSite (String MultiSite)
-    {
-        this.MultiSite = MultiSite;
+    public void setEncryption(String encryption) {
+        this.encryption = encryption;
     }
 
-    public String getRemoteMonitoring ()
-    {
-        return RemoteMonitoring;
+    public String getMultiSite() {
+        return multiSite;
     }
 
-    public void setRemoteMonitoring (String RemoteMonitoring)
-    {
-        this.RemoteMonitoring = RemoteMonitoring;
+    public void setMultiSite(String multiSite) {
+        this.multiSite = multiSite;
     }
 
-    public String getEncryption ()
-    {
-        return Encryption;
+    public String getRemoteMonitoring() {
+        return remoteMonitoring;
     }
 
-    public void setEncryption (String Encryption)
-    {
-        this.Encryption = Encryption;
+    public void setRemoteMonitoring(String remoteMonitoring) {
+        this.remoteMonitoring = remoteMonitoring;
     }
 
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [MultiSite = "+MultiSite+", RemoteMonitoring = "+RemoteMonitoring+", Encryption = "+Encryption+"]";
-    }
 }

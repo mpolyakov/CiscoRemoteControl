@@ -1,22 +1,20 @@
 package com.kts.ciscorc.data.model.systemunit;
 
-public class Hardware
-{
-    private Module Module;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    public Module getModule ()
-    {
-        return Module;
+public class Hardware {
+
+    @SerializedName("Module")
+    @Expose
+    private Module module;
+
+    public Module getModule() {
+        return module;
     }
 
-    public void setModule (Module Module)
-    {
-        this.Module = Module;
+    public void setModule(Module module) {
+        this.module = module;
     }
 
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [Module = "+Module+"]";
-    }
 }

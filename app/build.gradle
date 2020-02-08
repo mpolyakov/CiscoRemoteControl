@@ -20,7 +20,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'com.google.android.material:material:1.0.0'
@@ -29,9 +29,15 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     // https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
-    implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.4.0-b180830.0359'
+    implementation 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
     // https://mvnrepository.com/artifact/xerces/xercesImpl
-    implementation group: 'xerces', name: 'xercesImpl', version: '2.8.0'
+    implementation 'xerces:xercesImpl:2.8.0'
+    // https://mvnrepository.com/artifact/javax.xml.stream/stax-api
+    implementation 'javax.xml.stream:stax-api:1.0-2'
+    implementation files('libs/json-20140107.jar')
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+
 
 
 }

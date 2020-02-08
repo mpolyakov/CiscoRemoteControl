@@ -1,34 +1,31 @@
 package com.kts.ciscorc.data.model.systemunit;
 
-public class Module
-{
-    private String CompatibilityLevel;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    private String SerialNumber;
+public class Module {
 
-    public String getCompatibilityLevel ()
-    {
-        return CompatibilityLevel;
+    @SerializedName("CompatibilityLevel")
+    @Expose
+    private String compatibilityLevel;
+    @SerializedName("SerialNumber")
+    @Expose
+    private String serialNumber;
+
+    public String getCompatibilityLevel() {
+        return compatibilityLevel;
     }
 
-    public void setCompatibilityLevel (String CompatibilityLevel)
-    {
-        this.CompatibilityLevel = CompatibilityLevel;
+    public void setCompatibilityLevel(String compatibilityLevel) {
+        this.compatibilityLevel = compatibilityLevel;
     }
 
-    public String getSerialNumber ()
-    {
-        return SerialNumber;
+    public String getSerialNumber() {
+        return serialNumber;
     }
 
-    public void setSerialNumber (String SerialNumber)
-    {
-        this.SerialNumber = SerialNumber;
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
     }
 
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [CompatibilityLevel = "+CompatibilityLevel+", SerialNumber = "+SerialNumber+"]";
-    }
 }

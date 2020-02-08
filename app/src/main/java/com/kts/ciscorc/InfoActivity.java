@@ -6,15 +6,32 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
 import com.kts.ciscorc.data.ConnectionClass;
+import com.kts.ciscorc.data.model.systemunit.SystemUnitRequest;
+
+import org.json.XML;
+import org.json.*;
+
 
 public class InfoActivity extends AppCompatActivity {
-    TextView textView;
-    String resultText;
+    TextView textName;
+    TextView textStatus;
+    TextView textNumber;
+    TextView textIPaddress;
+    TextView textPlatformID;
+    TextView textSN;
+    TextView textSoftware;
+    TextView textEncryption;
+    TextView textMultisite;
+    TextView textRemoteMon;
+
+    String resultText, result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,19 +68,41 @@ public class InfoActivity extends AppCompatActivity {
             }
         });
 
-        textView = findViewById(R.id.textViewInfo);
+        textName = findViewById(R.id.textView1);
+//        textStatus = findViewById(R.id.textViewStatus);
+//        textNumber = findViewById(R.id.textViewNumber);
+//        textIPaddress = findViewById(R.id.textViewIPaddress);
+//        textPlatformID = findViewById(R.id.textViewPlatformId);
+//        textSN = findViewById(R.id.textViewSN);
+//        textSoftware = findViewById(R.id.textViewSoftware);
+//        textEncryption = findViewById(R.id.textViewEncryption);
+//        textMultisite = findViewById(R.id.textViewMultisite);
+//        textRemoteMon = findViewById(R.id.textViewRemoteMon);
 
         final Handler handler = new Handler();
         new Thread(new Runnable() {
             @Override
             public void run() {
                 resultText = ConnectionClass.methodGET(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), "/getxml?location=/Status/SystemUnit");
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        textView.setText(resultText);
-                    }
-                });
+                try {
+                    JSONObject json = XML.toJSONObject(resultText); // converts xml to json
+                    final String jsonPrettyPrintString = json.toString(4); // json pretty print
+
+                    Gson gson = new Gson();
+                    final SystemUnitRequest systemUnitRequest = gson.fromJson(jsonPrettyPrintString, SystemUnitRequest.class);
+
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+//                        displayInfo(systemUnitRequest);
+                            textName.setText(systemUnitRequest.getStatus().getSystemUnit().getProductId());
+                        }
+                    });
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
             }
         }).start();
 
@@ -106,6 +145,12 @@ public class InfoActivity extends AppCompatActivity {
 //        } catch (MalformedURLException e) {
 //            e.printStackTrace();
 //        }
+
+    }
+
+    private void displayInfo(SystemUnitRequest systemUnitRequest) {
+        textName.setText(systemUnitRequest.getStatus().getSystemUnit().getProductId());
+//        textSN.setText(systemUnitRequest.getStatus().getSystemUnit().getHardware().getModule().getSerialNumber());
 
     }
 }

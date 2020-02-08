@@ -52,12 +52,22 @@
         android:layout_height="300dp"
         android:layout_below="@+id/topLinearLayout"
         android:layout_alignParentEnd="true"></FrameLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@+id/fragment_place"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:id="@+id/delimFirst"/>
 
     <LinearLayout
         android:id="@+id/firstLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/fragment_place"
+        android:layout_below="@+id/delimFirst"
         android:orientation="horizontal">
 
         <Button

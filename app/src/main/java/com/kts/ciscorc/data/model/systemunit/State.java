@@ -1,46 +1,43 @@
+
 package com.kts.ciscorc.data.model.systemunit;
 
-public class State
-{
-    private String NumberOfInProgressCalls;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    private String NumberOfActiveCalls;
+public class State {
 
-    private String NumberOfSuspendedCalls;
+    @SerializedName("NumberOfActiveCalls")
+    @Expose
+    private String numberOfActiveCalls;
+    @SerializedName("NumberOfInProgressCalls")
+    @Expose
+    private String numberOfInProgressCalls;
+    @SerializedName("NumberOfSuspendedCalls")
+    @Expose
+    private String numberOfSuspendedCalls;
 
-    public String getNumberOfInProgressCalls ()
-    {
-        return NumberOfInProgressCalls;
+    public String getNumberOfActiveCalls() {
+        return numberOfActiveCalls;
     }
 
-    public void setNumberOfInProgressCalls (String NumberOfInProgressCalls)
-    {
-        this.NumberOfInProgressCalls = NumberOfInProgressCalls;
+    public void setNumberOfActiveCalls(String numberOfActiveCalls) {
+        this.numberOfActiveCalls = numberOfActiveCalls;
     }
 
-    public String getNumberOfActiveCalls ()
-    {
-        return NumberOfActiveCalls;
+    public String getNumberOfInProgressCalls() {
+        return numberOfInProgressCalls;
     }
 
-    public void setNumberOfActiveCalls (String NumberOfActiveCalls)
-    {
-        this.NumberOfActiveCalls = NumberOfActiveCalls;
+    public void setNumberOfInProgressCalls(String numberOfInProgressCalls) {
+        this.numberOfInProgressCalls = numberOfInProgressCalls;
     }
 
-    public String getNumberOfSuspendedCalls ()
-    {
-        return NumberOfSuspendedCalls;
+    public String getNumberOfSuspendedCalls() {
+        return numberOfSuspendedCalls;
     }
 
-    public void setNumberOfSuspendedCalls (String NumberOfSuspendedCalls)
-    {
-        this.NumberOfSuspendedCalls = NumberOfSuspendedCalls;
+    public void setNumberOfSuspendedCalls(String numberOfSuspendedCalls) {
+        this.numberOfSuspendedCalls = numberOfSuspendedCalls;
     }
 
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [NumberOfInProgressCalls = "+NumberOfInProgressCalls+", NumberOfActiveCalls = "+NumberOfActiveCalls+", NumberOfSuspendedCalls = "+NumberOfSuspendedCalls+"]";
-    }
 }

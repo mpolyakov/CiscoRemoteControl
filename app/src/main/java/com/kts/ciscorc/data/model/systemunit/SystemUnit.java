@@ -1,94 +1,87 @@
+
 package com.kts.ciscorc.data.model.systemunit;
 
-public class SystemUnit
-{
-    private String Uptime;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    private State State;
+public class SystemUnit {
 
-    private String ProductType;
+    @SerializedName("Hardware")
+    @Expose
+    private Hardware hardware;
+    @SerializedName("ProductId")
+    @Expose
+    private String productId;
+    @SerializedName("ProductPlatform")
+    @Expose
+    private String productPlatform;
+    @SerializedName("ProductType")
+    @Expose
+    private String productType;
+    @SerializedName("Software")
+    @Expose
+    private Software software;
+    @SerializedName("State")
+    @Expose
+    private State state;
+    @SerializedName("Uptime")
+    @Expose
+    private String uptime;
 
-    private Hardware Hardware;
-
-    private String ProductId;
-
-    private Software Software;
-
-    private String ProductPlatform;
-
-    public String getUptime ()
-    {
-        return Uptime;
+    public Hardware getHardware() {
+        return hardware;
     }
 
-    public void setUptime (String Uptime)
-    {
-        this.Uptime = Uptime;
+    public void setHardware(Hardware hardware) {
+        this.hardware = hardware;
     }
 
-    public State getState ()
-    {
-        return State;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setState (State State)
-    {
-        this.State = State;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
-    public String getProductType ()
-    {
-        return ProductType;
+    public String getProductPlatform() {
+        return productPlatform;
     }
 
-    public void setProductType (String ProductType)
-    {
-        this.ProductType = ProductType;
+    public void setProductPlatform(String productPlatform) {
+        this.productPlatform = productPlatform;
     }
 
-    public Hardware getHardware ()
-    {
-        return Hardware;
+    public String getProductType() {
+        return productType;
     }
 
-    public void setHardware (Hardware Hardware)
-    {
-        this.Hardware = Hardware;
+    public void setProductType(String productType) {
+        this.productType = productType;
     }
 
-    public String getProductId ()
-    {
-        return ProductId;
+    public Software getSoftware() {
+        return software;
     }
 
-    public void setProductId (String ProductId)
-    {
-        this.ProductId = ProductId;
+    public void setSoftware(Software software) {
+        this.software = software;
     }
 
-    public Software getSoftware ()
-    {
-        return Software;
+    public State getState() {
+        return state;
     }
 
-    public void setSoftware (Software Software)
-    {
-        this.Software = Software;
+    public void setState(State state) {
+        this.state = state;
     }
 
-    public String getProductPlatform ()
-    {
-        return ProductPlatform;
+    public String getUptime() {
+        return uptime;
     }
 
-    public void setProductPlatform (String ProductPlatform)
-    {
-        this.ProductPlatform = ProductPlatform;
+    public void setUptime(String uptime) {
+        this.uptime = uptime;
     }
 
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [Uptime = "+Uptime+", State = "+State+", ProductType = "+ProductType+", Hardware = "+Hardware+", ProductId = "+ProductId+", Software = "+Software+", ProductPlatform = "+ProductPlatform+"]";
-    }
 }

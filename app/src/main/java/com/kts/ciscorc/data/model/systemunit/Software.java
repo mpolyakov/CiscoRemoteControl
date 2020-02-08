@@ -1,70 +1,64 @@
 package com.kts.ciscorc.data.model.systemunit;
 
-public class Software
-{
-    private OptionKeys OptionKeys;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    private String Version;
+public class Software {
 
-    private String DisplayName;
+    @SerializedName("DisplayName")
+    @Expose
+    private String displayName;
+    @SerializedName("Name")
+    @Expose
+    private String name;
+    @SerializedName("OptionKeys")
+    @Expose
+    private OptionKeys optionKeys;
+    @SerializedName("ReleaseDate")
+    @Expose
+    private String releaseDate;
+    @SerializedName("Version")
+    @Expose
+    private String version;
 
-    private String ReleaseDate;
-
-    private String Name;
-
-    public OptionKeys getOptionKeys ()
-    {
-        return OptionKeys;
+    public String getDisplayName() {
+        return displayName;
     }
 
-    public void setOptionKeys (OptionKeys OptionKeys)
-    {
-        this.OptionKeys = OptionKeys;
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
-    public String getVersion ()
-    {
-        return Version;
+    public String getName() {
+        return name;
     }
 
-    public void setVersion (String Version)
-    {
-        this.Version = Version;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getDisplayName ()
-    {
-        return DisplayName;
+    public OptionKeys getOptionKeys() {
+        return optionKeys;
     }
 
-    public void setDisplayName (String DisplayName)
-    {
-        this.DisplayName = DisplayName;
+    public void setOptionKeys(OptionKeys optionKeys) {
+        this.optionKeys = optionKeys;
     }
 
-    public String getReleaseDate ()
-    {
-        return ReleaseDate;
+    public String getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setReleaseDate (String ReleaseDate)
-    {
-        this.ReleaseDate = ReleaseDate;
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
-    public String getName ()
-    {
-        return Name;
+    public String getVersion() {
+        return version;
     }
 
-    public void setName (String Name)
-    {
-        this.Name = Name;
+    public void setVersion(String version) {
+        this.version = version;
     }
 
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [OptionKeys = "+OptionKeys+", Version = "+Version+", DisplayName = "+DisplayName+", ReleaseDate = "+ReleaseDate+", Name = "+Name+"]";
-    }
 }

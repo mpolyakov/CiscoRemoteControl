@@ -1,22 +1,20 @@
 package com.kts.ciscorc.data.model.systemunit;
 
-public class SystemUnitRequest
-{
-    private Status Status;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    public Status getStatus ()
-    {
-        return Status;
+public class SystemUnitRequest {
+
+    @SerializedName("Status")
+    @Expose
+    private Status status;
+
+    public Status getStatus() {
+        return status;
     }
 
-    public void setStatus (Status Status)
-    {
-        this.Status = Status;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [Status = "+Status+"]";
-    }
 }
