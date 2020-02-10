@@ -14,7 +14,7 @@
         android:layout_centerInParent="true"
         android:text="Phonebook"
         android:textColor="@color/colorPrimary"
-        android:textSize="30dp"
+        android:textSize="24sp"
         android:textStyle="italic" />
 
     <TextView

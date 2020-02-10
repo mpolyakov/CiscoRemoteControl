@@ -1,22 +1,20 @@
 package com.kts.ciscorc.data.model.phonebook;
 
-public class Command
-{
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+public class Command {
+
+    @SerializedName("PhonebookSearchResult")
+    @Expose
     private PhonebookSearchResult phonebookSearchResult;
 
-    public PhonebookSearchResult getPhonebookSearchResult ()
-    {
+    public PhonebookSearchResult getPhonebookSearchResult() {
         return phonebookSearchResult;
     }
 
-    public void setPhonebookSearchResult (PhonebookSearchResult phonebookSearchResult)
-    {
+    public void setPhonebookSearchResult(PhonebookSearchResult phonebookSearchResult) {
         this.phonebookSearchResult = phonebookSearchResult;
     }
 
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [phonebookSearchResult = "+ phonebookSearchResult +"]";
-    }
 }

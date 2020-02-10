@@ -1,4 +1,4 @@
-package com.kts.ciscorc.data.model.systemunit;
+package com.kts.ciscorc.data.model.status;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -17,6 +17,12 @@ public class Status {
     @SerializedName("_apiVersion")
     @Expose
     private String apiVersion;
+    @SerializedName("UserInterface")
+    @Expose
+    private UserInterface userInterface;
+    @SerializedName("Network")
+    @Expose
+    private Network network;
 
     public SystemUnit getSystemUnit() {
         return systemUnit;
@@ -48,6 +54,24 @@ public class Status {
 
     public void setApiVersion(String apiVersion) {
         this.apiVersion = apiVersion;
+    }
+
+
+
+    public UserInterface getUserInterface() {
+        return userInterface;
+    }
+
+    public void setUserInterface(UserInterface userInterface) {
+        this.userInterface = userInterface;
+    }
+
+    public Network getNetwork() {
+        return network;
+    }
+
+    public void setNetwork(Network network) {
+        this.network = network;
     }
 
 }

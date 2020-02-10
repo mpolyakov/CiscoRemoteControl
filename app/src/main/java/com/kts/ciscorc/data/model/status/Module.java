@@ -1,4 +1,4 @@
-package com.kts.ciscorc.data.model.systemunit;
+package com.kts.ciscorc.data.model.status;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
