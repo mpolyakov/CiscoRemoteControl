@@ -7,23 +7,13 @@
     android:orientation="vertical"
     tools:context=".InfoActivity">
 
-    <TextView
-        android:id="@+id/textViewInfoState"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="System Info"
-        android:textColor="@color/colorPrimary"
-        android:textSize="24sp"
-        android:textStyle="italic"
-        android:layout_margin="8dp"/>
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewInfoState"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
         <TextView
             android:id="@+id/textView1"
             android:layout_width="match_parent"
@@ -77,7 +67,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
-            android:text="Number" />
+            android:text="Address" />
         <TextView
             android:id="@+id/textViewNumber"
             android:layout_width="match_parent"

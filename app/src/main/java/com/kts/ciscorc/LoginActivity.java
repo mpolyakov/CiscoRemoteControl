@@ -19,7 +19,7 @@ public class LoginActivity extends AppCompatActivity {
     TextInputEditText mPassword;
     MaterialButton mButtonConnect;
     TextView mTextView;
-    String connectionResponse;
+    final MainPresenter presenter = MainPresenter.getInstance();
 
 
     @Override
@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initUI();
-        final MainPresenter presenter = MainPresenter.getInstance();
+
 
 //        final ConnectionClass connectionClass = new ConnectionClass();
 
@@ -38,32 +38,27 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                presenter.setIpAddress(mIpAddr.getText().toString());
-                presenter.setLogin(mLogin.getText().toString());
-                presenter.setPassword(mPassword.getText().toString());
-
-
                 final Handler handler = new Handler();
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
 //                        ConnectionClass.disableSslVerification();
-                        final String response = ConnectionClass.connect(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword());
+                        final String response = ConnectionClass.connect(mIpAddr.getText().toString(), mLogin.getText().toString(), mPassword.getText().toString(), getString(R.string.getstatus));
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
                                 mTextView.setText(response);
                                 if (response.equals("OK")){
-                                    Intent intent = new Intent(LoginActivity.this, InfoActivity.class);
+                                    presenter.setIpAddress(mIpAddr.getText().toString());
+                                    presenter.setLogin(mLogin.getText().toString());
+                                    presenter.setPassword(mPassword.getText().toString());
+                                    Intent intent = new Intent(LoginActivity.this, DialActivity.class);
                                     startActivity(intent);
                                 }
-
                             }
                         });
                     }
                 }).start();
-
-
             }
         });
     }

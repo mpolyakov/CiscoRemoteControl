@@ -6,6 +6,7 @@ public final class MainPresenter {
     private String login;
     private String password;
     private String codecPlatform;
+    private String dialNumber;
 
     public static MainPresenter getInstance() {
         if (instance == null){
@@ -14,6 +15,14 @@ public final class MainPresenter {
         return instance;
     }
 
+
+    public String getDialNumber() {
+        return dialNumber;
+    }
+
+    public void setDialNumber(String dialNumber) {
+        this.dialNumber = dialNumber;
+    }
     public String getIpAddress() {
         return ipAddress;
     }

@@ -31,13 +31,15 @@ public class InfoActivity extends AppCompatActivity {
     TextView textRemoteMon;
 
     String resultXml;
+    final MainPresenter presenter = MainPresenter.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
 
-        final MainPresenter presenter = MainPresenter.getInstance();
+
 
         //Инициализация меню
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -52,14 +54,14 @@ public class InfoActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
                     case R.id.phonebook:
                         startActivity(new Intent(getApplicationContext(), PhonebookActivity.class));
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         finish();
                         return true;
                     case R.id.info:
                         return true;
                     case R.id.dial:
                         startActivity(new Intent(getApplicationContext(), DialActivity.class));
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         finish();
                         return true;
                 }
@@ -86,8 +88,8 @@ public class InfoActivity extends AppCompatActivity {
                 try {
                     JSONObject json = XML.toJSONObject(resultXml); // converts xml to json
                     final String jsonPrettyPrintString = json.toString(4); // json pretty print
-                    Gson gsonSystemUnit = new Gson();
-                    final StatusRequest statusRequest = gsonSystemUnit.fromJson(jsonPrettyPrintString, StatusRequest.class);
+                    Gson gsonStatus = new Gson();
+                    final StatusRequest statusRequest = gsonStatus.fromJson(jsonPrettyPrintString, StatusRequest.class);
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
@@ -103,6 +105,7 @@ public class InfoActivity extends AppCompatActivity {
     }
 
     private void displayInfo(StatusRequest statusRequest) {
+        presenter.setCodecPlatform(statusRequest.getStatus().getSystemUnit().getProductId());
         if (statusRequest.getStatus().getSystemUnit().getState().getNumberOfActiveCalls().equals("0")) {
             textStatus.setText("Out of call");
         } else textStatus.setText("In a call");
@@ -117,6 +120,8 @@ public class InfoActivity extends AppCompatActivity {
         textNumber.setText(statusRequest.getStatus().getUserInterface().getContactInfo().getContactMethod().get(0).getNumber());
 
         textIPaddress.setText(statusRequest.getStatus().getNetwork().getIPv4().getAddress());
+
+
 
 
     }

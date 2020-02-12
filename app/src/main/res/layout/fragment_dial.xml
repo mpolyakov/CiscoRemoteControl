@@ -5,11 +5,18 @@
     android:layout_height="match_parent"
     tools:context=".fragments.FragmentDial">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Страница DIAL" />
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/editTextDialNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="15"
+            android:inputType="number|text"
+            android:text=""
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
 
 </FrameLayout>

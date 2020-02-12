@@ -1,6 +1,7 @@
 package com.kts.ciscorc;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ public class RecyclerViewAdapterPhonebook extends RecyclerView.Adapter<RecyclerV
     private ArrayList<String> mPhonebookNames = new ArrayList<>();
     private ArrayList<String> mPhonebookNumbers = new ArrayList<>();
     private Context mContext;
+    final MainPresenter presenter = MainPresenter.getInstance();
 
     public RecyclerViewAdapterPhonebook(Context mContext, ArrayList<String> mPhonebookNames, ArrayList<String> mPhonebookNumbers) {
         this.mPhonebookNames = mPhonebookNames;
@@ -40,7 +42,11 @@ public class RecyclerViewAdapterPhonebook extends RecyclerView.Adapter<RecyclerV
         holder.parentPhonebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, mPhonebookNames.get(position), Toast.LENGTH_SHORT).show();
+                presenter.setDialNumber(mPhonebookNumbers.get(position));
+                Intent intent  = new Intent(mContext, DialActivity.class);
+                intent.putExtra("address_of_remote_endpoint", mPhonebookNumbers.get(position));
+                mContext.startActivity(intent);
+
             }
         });
 

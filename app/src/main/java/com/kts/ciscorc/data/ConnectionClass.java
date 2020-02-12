@@ -1,5 +1,7 @@
 package com.kts.ciscorc.data;
 
+import com.kts.ciscorc.MainPresenter;
+
 import javax.net.ssl.*;
 import javax.xml.bind.DatatypeConverter;
 
@@ -13,6 +15,7 @@ import java.util.Base64;
 
 public class ConnectionClass {
     public static URL url;
+    final MainPresenter presenter = MainPresenter.getInstance();
 
     //Отключение проверки сертификата ->
     public static void disableSslVerification() {
@@ -50,12 +53,12 @@ public class ConnectionClass {
     }
     // <- Отключение проверки сертификата
 
-    public static String connect(String ipaddress, String login, String password) {
+    public static String connect(String ipaddress, String login, String password, String partUri) {
         disableSslVerification();
         String uri = null;
         //Логика подключения к терминалу, авторизация
         try {
-            uri = "https://" + ipaddress + "/getxml?location=/Status/UserInterface/ContactInfo";
+            uri = "https://" + ipaddress + partUri;
             url = new URL(uri);
             String userCredentials = login + ":" + password;
 //            String basicAuth = "Basic " + new String(Base64.getEncoder().encode(userCredentials.getBytes()));  //Работает только с версии API 26

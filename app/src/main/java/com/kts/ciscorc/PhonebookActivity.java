@@ -51,12 +51,12 @@ public class PhonebookActivity extends AppCompatActivity {
                         return true;
                     case R.id.info:
                         startActivity(new Intent(getApplicationContext(), InfoActivity.class));
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         finish();
                         return true;
                     case R.id.dial:
                         startActivity(new Intent(getApplicationContext(), DialActivity.class));
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         finish();
                         return true;
                 }

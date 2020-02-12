@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ToggleButton;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -26,14 +27,13 @@ public class DialActivity extends AppCompatActivity {
     FragmentTransaction fragmentTransaction;
     ToggleButton toggleButtonDial;
     ToggleButton toggleButtonSelfView;
+    EditText dialNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dial);
         getWindow().getDecorView().setBackgroundColor(Color.WHITE);
-
-
 
         init();
 
@@ -101,6 +101,15 @@ public class DialActivity extends AppCompatActivity {
         toggleButtonSelfView = findViewById(R.id.toggleSelfView);
         toggleButtonDial.setChecked(true);
 
+        dialNum = findViewById(R.id.editTextDialNumber);
 
+
+    }
+
+    private void getIncomingIntent(){
+        if (getIntent().hasExtra("address_of_remote_endpoint")){
+            String receivedNumer = getIntent().getStringExtra("address_of_remote_endpoint");
+            dialNum.setText(receivedNumer);
+        }
     }
 }

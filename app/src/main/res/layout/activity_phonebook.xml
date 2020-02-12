@@ -6,24 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".PhonebookActivity">
 
-    <TextView
-        android:id="@+id/textViewPhonebookState"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:text="Phonebook"
-        android:textColor="@color/colorPrimary"
-        android:textSize="24sp"
-        android:textStyle="italic"
-        android:layout_margin="8dp"/>
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/phonebook_recyclerview"
-        android:layout_below="@+id/textViewPhonebookState"
+        android:layout_marginTop="16dp"
         android:layout_above="@+id/bottom_navigation">
 
     </androidx.recyclerview.widget.RecyclerView>

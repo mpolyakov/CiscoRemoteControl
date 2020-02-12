@@ -2,21 +2,33 @@ package com.kts.ciscorc.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
+import com.kts.ciscorc.MainPresenter;
 import com.kts.ciscorc.R;
 
 public class FragmentDial extends Fragment {
+    EditText dialNum;
+    final MainPresenter presenter = MainPresenter.getInstance();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dial, container, false);
+        View layout  = inflater.inflate(R.layout.fragment_dial, container, false);
+
+        dialNum = layout.findViewById(R.id.editTextDialNumber);
+        dialNum.setText(presenter.getDialNumber());
+        presenter.setDialNumber(null);
+
+        return layout;
     }
+
 
 }
