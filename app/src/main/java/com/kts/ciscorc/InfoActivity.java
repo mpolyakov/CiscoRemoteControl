@@ -13,6 +13,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.kts.ciscorc.data.ConnectionClass;
 import com.kts.ciscorc.data.model.status.StatusRequest;
+import com.kts.ciscorc.dbase.NoteAdapter;
+import com.kts.ciscorc.dbase.NoteDataReader;
+import com.kts.ciscorc.dbase.NoteDataSource;
 
 import org.json.XML;
 import org.json.*;
@@ -33,12 +36,15 @@ public class InfoActivity extends AppCompatActivity {
     String resultXml;
     final MainPresenter presenter = MainPresenter.getInstance();
 
+    private NoteDataSource notesDataSource;
+    private NoteDataReader noteDataReader;
+    private NoteAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
-
 
 
         //Инициализация меню
@@ -69,6 +75,9 @@ public class InfoActivity extends AppCompatActivity {
             }
         });
 
+
+        initDataSource();
+
         textName = findViewById(R.id.textViewName);
         textStatus = findViewById(R.id.textViewStatus);
         textNumber = findViewById(R.id.textViewNumber);
@@ -94,6 +103,8 @@ public class InfoActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             displayInfo(statusRequest);
+                            addElement(statusRequest);
+
                         }
                     });
                 } catch (Exception e) {
@@ -121,8 +132,22 @@ public class InfoActivity extends AppCompatActivity {
 
         textIPaddress.setText(statusRequest.getStatus().getNetwork().getIPv4().getAddress());
 
-
-
-
     }
+
+    private void addElement(StatusRequest request) {
+        notesDataSource.addNote(request.getStatus().getUserInterface().getContactInfo().getName(), presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), request.getStatus().getSystemUnit().getProductId());
+        dataUpdated();
+    }
+
+    private void dataUpdated() {
+        noteDataReader.Refresh();
+    }
+
+    private void initDataSource() {
+        notesDataSource = new NoteDataSource(getApplicationContext());
+        notesDataSource.open();
+        noteDataReader = notesDataSource.getNoteDataReader();
+    }
+
+
 }

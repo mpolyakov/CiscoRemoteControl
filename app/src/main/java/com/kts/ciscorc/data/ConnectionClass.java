@@ -72,14 +72,14 @@ public class ConnectionClass {
             return connection.getResponseMessage();
 
         } catch (SocketTimeoutException e) {
-            return e.toString() + "Видеотерминал не отвечает";
+            return e.toString() + " Видеотерминал не отвечает";
         } catch (UnknownHostException e) {
-            return e.toString() + "Неизвестный хост";
+            return e.toString() + " Неизвестный хост";
         } catch (IOException e) {
-            return e.toString() + "Запрос не авторизован";
+            return e.toString() + " Запрос не авторизован";
         } catch (Exception e) {
             e.printStackTrace();
-            return e.toString() + "Видеотерминал не отвечает";
+            return e.toString() + " Видеотерминал не отвечает";
         }
 
     }
@@ -109,14 +109,14 @@ public class ConnectionClass {
             return result;
 
         } catch (SocketTimeoutException e) {
-            return e.toString() + "Видеотерминал не отвечает";
+            return e.toString() + " Видеотерминал не отвечает";
         } catch (UnknownHostException e) {
-            return e.toString() + "Неизвестный хост";
+            return e.toString() + " Неизвестный хост";
         } catch (IOException e) {
-            return e.toString() + "Запрос не авторизован";
+            return e.toString() + " Запрос не авторизован";
         } catch (Exception e) {
             e.printStackTrace();
-            return e.toString() + "Видеотерминал не отвечает";
+            return e.toString() + " Видеотерминал не отвечает";
         }
     }
 
@@ -151,14 +151,14 @@ public class ConnectionClass {
             return result;
 
         } catch (SocketTimeoutException e) {
-            return e.toString() + "Видеотерминал не отвечает";
+            return e.toString() + " Видеотерминал не отвечает";
         } catch (UnknownHostException e) {
-            return e.toString() + "Неизвестный хост";
+            return e.toString() + " Неизвестный хост";
         } catch (IOException e) {
-            return e.toString() + "Запрос не авторизован";
+            return e.toString() + " Запрос не авторизован";
         } catch (Exception e) {
             e.printStackTrace();
-            return e.toString() + "Видеотерминал не отвечает";
+            return e.toString() + " Видеотерминал не отвечает";
         }
 
     }

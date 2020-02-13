@@ -1,27 +1,40 @@
 package com.kts.ciscorc.dbase;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupMenu;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.kts.ciscorc.DialActivity;
+import com.kts.ciscorc.InfoActivity;
+import com.kts.ciscorc.LoginActivity;
+import com.kts.ciscorc.MainPresenter;
 import com.kts.ciscorc.R;
+import com.kts.ciscorc.data.ConnectionClass;
 
 import java.util.List;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     private NoteDataReader noteDataReader;
     private OnMenuItemClickListener itemMenuClickListener;
+    private Context mContext;
+    final MainPresenter presenter = MainPresenter.getInstance();
 
-    public NoteAdapter(NoteDataReader noteDataReader){
+    public NoteAdapter(NoteDataReader noteDataReader, Context mContext){
         this.noteDataReader = noteDataReader;
+        this.mContext = mContext;
     }
 
     @Override
@@ -47,23 +60,56 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     }
 
     public interface OnMenuItemClickListener{
-        void onItemEditClick(Note note);
+//        void onItemEditClick(Note note);
         void onItemDeleteClick(Note note);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView textNote;
+        private TextView textIPaddr;
+        private RelativeLayout circleParent;
         private Note note;
 
         public ViewHolder(View itemView){
             super(itemView);
             textNote = itemView.findViewById(R.id.textTitle);
-            textNote.setOnClickListener(new View.OnClickListener() {
+            textIPaddr = itemView.findViewById(R.id.textIPaddr);
+            circleParent = itemView.findViewById(R.id.circle_parent);
+            circleParent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    final Handler handler = new Handler();
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            final String response = ConnectionClass.connect(note.getIpAddr(), note.getUsername(), note.getPassword(), mContext.getString(R.string.getstatus));
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(mContext, response, Toast.LENGTH_SHORT).show();
+                                    if (response.equals("OK")){
+                                        presenter.setIpAddress(note.getIpAddr());
+                                        presenter.setLogin(note.getUsername());
+                                        presenter.setPassword(note.getPassword());
+                                        Intent intent = new Intent(mContext, DialActivity.class);
+                                        mContext.startActivity(intent);
+                                    }
+                                }
+                            });
+                        }
+                    }).start();
+
+                }
+            });
+
+            circleParent.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
                     if (itemMenuClickListener != null){
-                        showPopupMenu(textNote);
+                        showPopupMenu(circleParent);
+                        return true;
                     }
+                    return false;
                 }
             });
         }
@@ -71,6 +117,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         public void bind(Note note){
             this.note = note;
             textNote.setText(note.getTitle());
+            textIPaddr.setText(note.getIpAddr());
         }
 
         private void showPopupMenu(View view){
@@ -81,9 +128,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     switch (item.getItemId()){
-                        case R.id.menu_edit:
-                            itemMenuClickListener.onItemEditClick(note);
-                            return true;
+//                        case R.id.menu_edit:
+//                            itemMenuClickListener.onItemEditClick(note);
+//                            return true;
                         case R.id.menu_delete:
                             itemMenuClickListener.onItemDeleteClick(note);
                             return true;

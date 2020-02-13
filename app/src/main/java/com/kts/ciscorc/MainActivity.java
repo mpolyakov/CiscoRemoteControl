@@ -48,12 +48,12 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new NoteAdapter(noteDataReader);
+        adapter = new NoteAdapter(noteDataReader, this);
         adapter.setOnMenuItemClickListener(new NoteAdapter.OnMenuItemClickListener() {
-            @Override
-            public void onItemEditClick(Note note) {
-                editElement(note);
-            }
+//            @Override
+//            public void onItemEditClick(Note note) {
+//                editElement(note);
+//            }
 
             @Override
             public void onItemDeleteClick(Note note) {
@@ -64,10 +64,17 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        dataUpdated();
+    }
+
     private void initDataSource() {
         notesDataSource = new NoteDataSource(getApplicationContext());
         notesDataSource.open();
         noteDataReader = notesDataSource.getNoteDataReader();
+
     }
 
     @Override
@@ -79,9 +86,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_add:
-                addElement();
-                return true;
+//            case R.id.menu_add:
+//                addElement();
+//                return true;
             case R.id.menu_clear:
                 clearList();
                 return true;
@@ -90,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void clearList(){
+    private void clearList() {
         notesDataSource.deleteAll();
         dataUpdated();
     }
@@ -107,24 +114,24 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int id) {
                 EditText editTextNote = alertView.findViewById(R.id.editTextNote);
                 EditText editTextNoteTitle = alertView.findViewById(R.id.editTextNoteTitle);
-                notesDataSource.addNote(editTextNoteTitle.getText().toString(), editTextNote.getText().toString());
+                notesDataSource.addNote(editTextNoteTitle.getText().toString(), editTextNote.getText().toString(), "name", "pass", "platform");
                 dataUpdated();
             }
         });
         builder.show();
     }
 
-    private void editElement(Note note){
-        notesDataSource.editNote(note, "Edited", "Edited title");
-        dataUpdated();
-    }
+//    private void editElement(Note note){
+//        notesDataSource.editNote(note, "Edited", "Edited title");
+//        dataUpdated();
+//    }
 
-    private void deleteElement(Note note){
+    private void deleteElement(Note note) {
         notesDataSource.deleteNote(note);
         dataUpdated();
     }
 
-    private void dataUpdated(){
+    private void dataUpdated() {
         noteDataReader.Refresh();
         adapter.notifyDataSetChanged();
     }

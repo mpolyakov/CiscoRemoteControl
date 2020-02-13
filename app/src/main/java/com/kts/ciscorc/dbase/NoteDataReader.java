@@ -11,7 +11,10 @@ public class NoteDataReader implements Closeable {
     private String[] notesAllColumn = {
             DatabaseHelper.COLUMN_ID,
             DatabaseHelper.COLUMN_NOTE,
-            DatabaseHelper.COLUMN_NOTE_TITLE
+            DatabaseHelper.COLUMN_NOTE_TITLE,
+            DatabaseHelper.COLUMN_USERNAME,
+            DatabaseHelper.COLUMN_PASSWORD,
+            DatabaseHelper.COLUMN_PLATFORM
     };
 
     public NoteDataReader(SQLiteDatabase database){
@@ -51,6 +54,9 @@ public class NoteDataReader implements Closeable {
         note.setId(cursor.getLong(0));
         note.setIpAddr(cursor.getString(1));
         note.setTitle(cursor.getString(2));
+        note.setUsername(cursor.getString(3));
+        note.setPassword(cursor.getString(4));
+        note.setPlatform(cursor.getString(5));
         return note;
     }
 }

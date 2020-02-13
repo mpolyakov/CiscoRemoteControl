@@ -13,6 +13,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.kts.ciscorc.data.ConnectionClass;
 
+
 public class LoginActivity extends AppCompatActivity {
     TextInputEditText mIpAddr;
     TextInputEditText mLogin;
@@ -20,6 +21,8 @@ public class LoginActivity extends AppCompatActivity {
     MaterialButton mButtonConnect;
     TextView mTextView;
     final MainPresenter presenter = MainPresenter.getInstance();
+    String resultXml;
+
 
 
     @Override
@@ -27,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initUI();
+
 
 
 //        final ConnectionClass connectionClass = new ConnectionClass();
@@ -48,11 +52,11 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 mTextView.setText(response);
-                                if (response.equals("OK")){
+                                if (response.equals("OK")) {
                                     presenter.setIpAddress(mIpAddr.getText().toString());
                                     presenter.setLogin(mLogin.getText().toString());
                                     presenter.setPassword(mPassword.getText().toString());
-                                    Intent intent = new Intent(LoginActivity.this, DialActivity.class);
+                                    Intent intent = new Intent(LoginActivity.this, InfoActivity.class);
                                     startActivity(intent);
                                 }
                             }
@@ -62,6 +66,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void initUI() {
         mIpAddr = findViewById(R.id.textInputIP);

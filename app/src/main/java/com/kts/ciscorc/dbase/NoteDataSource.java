@@ -27,27 +27,25 @@ public class NoteDataSource implements Closeable {
         dbHelper.close();
     }
 
-    public Note addNote(String title, String description){
+    public Note addNote(String title, String ipaddr, String username, String password, String platform){
         ContentValues values = new ContentValues();
-        values.put(DatabaseHelper.COLUMN_NOTE, description);
+        values.put(DatabaseHelper.COLUMN_NOTE, ipaddr);
         values.put(DatabaseHelper.COLUMN_NOTE_TITLE, title);
+        values.put(DatabaseHelper.COLUMN_USERNAME, username);
+        values.put(DatabaseHelper.COLUMN_PASSWORD, password);
+        values.put(DatabaseHelper.COLUMN_PLATFORM, platform);
 
         long insertId = database.insert(DatabaseHelper.TABLE_NOTES, null, values);
         Note newNote = new Note();
-        newNote.setIpAddr(description);
+        newNote.setIpAddr(ipaddr);
         newNote.setTitle(title);
         newNote.setId(insertId);
+        newNote.setUsername(username);
+        newNote.setPassword(password);
+        newNote.setPlatform(platform);
         return newNote;
     }
 
-    public void editNote(Note note, String description, String title){
-        ContentValues editNote = new ContentValues();
-        editNote.put(dbHelper.COLUMN_ID, note.getId());
-        editNote.put(dbHelper.COLUMN_NOTE, description);
-        editNote.put(dbHelper.COLUMN_NOTE_TITLE, title);
-
-        database.update(dbHelper.TABLE_NOTES, editNote, dbHelper.COLUMN_ID + "=" + note.getId(), null);
-    }
 
     public void deleteNote(Note note){
         long id = note.getId();
