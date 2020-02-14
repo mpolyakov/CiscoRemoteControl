@@ -74,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
         notesDataSource = new NoteDataSource(getApplicationContext());
         notesDataSource.open();
         noteDataReader = notesDataSource.getNoteDataReader();
-
     }
 
     @Override
@@ -86,9 +85,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-//            case R.id.menu_add:
-//                addElement();
-//                return true;
             case R.id.menu_clear:
                 clearList();
                 return true;
@@ -102,28 +98,23 @@ public class MainActivity extends AppCompatActivity {
         dataUpdated();
     }
 
-    private void addElement(){
-        LayoutInflater factory = LayoutInflater.from(this);
-        final View alertView = factory.inflate(R.layout.layout_add_note, null);
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setView(alertView);
-        builder.setTitle(R.string.alert_title_add);
-        builder.setNegativeButton(R.string.alert_cancel, null);
-        builder.setPositiveButton(R.string.menu_add, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-                EditText editTextNote = alertView.findViewById(R.id.editTextNote);
-                EditText editTextNoteTitle = alertView.findViewById(R.id.editTextNoteTitle);
-                notesDataSource.addNote(editTextNoteTitle.getText().toString(), editTextNote.getText().toString(), "name", "pass", "platform");
-                dataUpdated();
-            }
-        });
-        builder.show();
-    }
-
-//    private void editElement(Note note){
-//        notesDataSource.editNote(note, "Edited", "Edited title");
-//        dataUpdated();
+//    private void addElement(){
+//        LayoutInflater factory = LayoutInflater.from(this);
+//        final View alertView = factory.inflate(R.layout.layout_add_note, null);
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setView(alertView);
+//        builder.setTitle(R.string.alert_title_add);
+//        builder.setNegativeButton(R.string.alert_cancel, null);
+//        builder.setPositiveButton(R.string.menu_add, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int id) {
+//                EditText editTextNote = alertView.findViewById(R.id.editTextNote);
+//                EditText editTextNoteTitle = alertView.findViewById(R.id.editTextNoteTitle);
+//                notesDataSource.addNote(editTextNoteTitle.getText().toString(), editTextNote.getText().toString(), "name", "pass", "platform");
+//                dataUpdated();
+//            }
+//        });
+//        builder.show();
 //    }
 
     private void deleteElement(Note note) {
@@ -136,25 +127,4 @@ public class MainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.main_menu, menu);
-//        return true;
-//    }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up buttonConnect, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.menu_clear) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 }

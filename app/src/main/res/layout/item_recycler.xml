@@ -9,7 +9,8 @@
         android:id="@+id/image_circle"
         android:layout_width="80sp"
         android:layout_height="80sp"
-        android:src="@drawable/kitplus" />
+        android:src="@drawable/kitplus"
+        android:clickable="true"/>
 
     <TextView
         android:id="@+id/textTitle"
@@ -17,9 +18,9 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/image_circle"
         android:text="TextView"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="20dp"/>
 
     <TextView
         android:id="@+id/textIPaddr"
@@ -28,8 +29,8 @@
         android:layout_below="@+id/textTitle"
         android:layout_toRightOf="@+id/image_circle"
         android:text="TextView"
-        android:textSize="16sp"
+        android:textSize="12sp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="4dp"/>
 
 </RelativeLayout>

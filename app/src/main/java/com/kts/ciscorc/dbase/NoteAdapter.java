@@ -18,13 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.kts.ciscorc.DialActivity;
-import com.kts.ciscorc.InfoActivity;
-import com.kts.ciscorc.LoginActivity;
 import com.kts.ciscorc.MainPresenter;
 import com.kts.ciscorc.R;
 import com.kts.ciscorc.data.ConnectionClass;
-
-import java.util.List;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     private NoteDataReader noteDataReader;
@@ -60,7 +56,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     }
 
     public interface OnMenuItemClickListener{
-//        void onItemEditClick(Note note);
         void onItemDeleteClick(Note note);
     }
 
@@ -128,9 +123,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     switch (item.getItemId()){
-//                        case R.id.menu_edit:
-//                            itemMenuClickListener.onItemEditClick(note);
-//                            return true;
                         case R.id.menu_delete:
                             itemMenuClickListener.onItemDeleteClick(note);
                             return true;

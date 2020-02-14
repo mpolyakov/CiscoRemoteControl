@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#425367</color>
-    <color name="colorPrimaryDark">#D3D8DF</color>
-    <color name="colorAccent">#B7BFC8</color>
+    <color name="colorPrimary">#1976D2</color>
+    <color name="colorPrimaryDark">#616161</color>
+    <color name="colorAccent">#616161</color>
 
+    <color name="colorMain">#2979FF</color>
+    <color name="colorMainDark">#1976D2</color>
 
     <color name="colorFragmentDial">#8ee37d</color>
+
+    <color name="black">#212121</color>
+    <color name="white">#FFFFFF</color>
+    <color name="greenDial">#00C853</color>
+    <color name="redDisconnect">#DD2C00</color>
 </resources>

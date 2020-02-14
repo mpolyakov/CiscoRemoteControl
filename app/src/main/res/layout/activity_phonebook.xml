@@ -6,14 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".PhonebookActivity">
 
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:textStyle="italic"
+        android:text="Contacts"
+        android:gravity="center_horizontal"
+        android:layout_margin="16dp"
+        android:id="@+id/textPhonebHead"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/phonebook_recyclerview"
-        android:layout_marginTop="16dp"
-        android:layout_above="@+id/bottom_navigation">
+        android:layout_marginTop="4dp"
+        android:layout_above="@+id/bottom_navigation"
+        android:layout_below="@+id/textPhonebHead">
 
     </androidx.recyclerview.widget.RecyclerView>
 

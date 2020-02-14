@@ -7,13 +7,23 @@
     android:orientation="vertical"
     tools:context=".InfoActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:textStyle="italic"
+        android:text="About"
+        android:gravity="center_horizontal"
+        android:layout_margin="16dp"
+        android:id="@+id/textInfoHead"/>
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="4dp"
+        android:layout_below="@+id/textInfoHead">
         <TextView
             android:id="@+id/textView1"
             android:layout_width="match_parent"
