@@ -11,10 +11,13 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="История подключений"
+        android:text="@string/history"
         android:gravity="center_horizontal"
         android:id="@+id/textViewHistory"
-        android:layout_margin="24dp"/>
+        android:layout_margin="16dp"
+        android:layout_marginTop="180dp"
+        android:textSize="22sp"
+        android:textStyle="italic"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"

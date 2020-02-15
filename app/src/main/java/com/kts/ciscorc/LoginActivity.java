@@ -1,5 +1,6 @@
 package com.kts.ciscorc;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -75,6 +76,12 @@ public class LoginActivity extends AppCompatActivity {
         mPassword = findViewById(R.id.textInputPassword);
         mButtonConnect = findViewById(R.id.material_button);
         mTextView = findViewById(R.id.textViewConnStatus);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null){
+            actionBar.hide();
+            actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.appbar_gradient));
+        }
     }
 
 

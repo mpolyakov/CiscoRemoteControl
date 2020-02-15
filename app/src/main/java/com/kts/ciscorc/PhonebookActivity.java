@@ -1,6 +1,7 @@
 package com.kts.ciscorc;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,6 +36,11 @@ public class PhonebookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phonebook);
         final MainPresenter presenter = MainPresenter.getInstance();
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null){
+            actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.appbar_gradient));
+        }
 
         //Инициализация меню
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);

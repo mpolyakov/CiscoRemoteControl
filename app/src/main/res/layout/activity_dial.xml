@@ -17,11 +17,11 @@
             android:id="@+id/toggleDial"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="55dp"
             android:layout_alignParentStart="true"
             android:layout_weight="1"
             android:background="@drawable/toggle_selector"
-            android:drawableStart="@drawable/ic_call_black_24dp"
+            android:drawableTop="@drawable/ic_call_black_24dp"
             android:drawableTint="@color/colorMainDark"
             android:onClick="changeFragment1"
             android:text="DialPage"
@@ -34,11 +34,11 @@
             android:id="@+id/toggleSelfView"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_toEndOf="@+id/toggleDial"
+            android:layout_height="55dp"
+            android:layout_alignParentEnd="true"
             android:layout_weight="1"
             android:background="@drawable/toggle_selector"
-            android:drawableStart="@drawable/ic_picture_in_picture_alt_black_24dp"
+            android:drawableTop="@drawable/ic_picture_in_picture_alt_black_24dp"
             android:drawableTint="@color/colorMainDark"
             android:onClick="changeFragment2"
             android:text="SelfView"
@@ -99,10 +99,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/fourLinearLayout"
+        android:id="@+id/secondLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/thirdLinearLayout"
+        android:layout_above="@+id/firstLinearLayout"
         android:orientation="horizontal">
 
         <com.google.android.material.button.MaterialButton
@@ -112,7 +112,7 @@
             app:cornerRadius="8dp"
             app:icon="@drawable/ic_volume_down_black_24dp"
             app:iconGravity="textStart"
-            app:iconTint="@color/black" />
+            app:iconTint="@color/colorAccent" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnVolumeUP"
@@ -121,7 +121,7 @@
             app:cornerRadius="8dp"
             app:icon="@drawable/ic_volume_up_black_24dp"
             app:iconGravity="textStart"
-            app:iconTint="@color/black" />
+            app:iconTint="@color/colorAccent" />
     </LinearLayout>
 
 
@@ -139,7 +139,7 @@
             app:cornerRadius="8dp"
             app:icon="@drawable/ic_mic_black_24dp"
             app:iconGravity="textStart"
-            app:iconTint="@color/black" />
+            app:iconTint="@color/colorAccent" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnMicOff"
@@ -148,14 +148,14 @@
             app:cornerRadius="8dp"
             app:icon="@drawable/ic_mic_off_black_24dp"
             app:iconGravity="textStart"
-            app:iconTint="@color/black" />
+            app:iconTint="@color/colorAccent" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/secondLinearLayout"
+        android:id="@+id/fourLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/firstLinearLayout"
+        android:layout_above="@+id/thirdLinearLayout"
         android:orientation="horizontal">
 
         <com.google.android.material.button.MaterialButton
@@ -165,7 +165,7 @@
             app:cornerRadius="8dp"
             app:icon="@drawable/ic_screen_share_black_24dp"
             app:iconGravity="textStart"
-            app:iconTint="@color/black" />
+            app:iconTint="@color/colorAccent" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnStopShare"
@@ -174,7 +174,7 @@
             app:cornerRadius="8dp"
             app:icon="@drawable/ic_stop_screen_share_black_24dp"
             app:iconGravity="textStart"
-            app:iconTint="@color/black" />
+            app:iconTint="@color/colorAccent" />
     </LinearLayout>
 
     <LinearLayout
@@ -191,7 +191,7 @@
             app:cornerRadius="8dp"
             app:icon="@drawable/ic_volume_off_black_24dp"
             app:iconGravity="textStart"
-            app:iconTint="@color/black" />
+            app:iconTint="@color/colorAccent" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnVideoMute"
@@ -200,7 +200,7 @@
             app:cornerRadius="8dp"
             app:icon="@drawable/ic_videocam_off_black_24dp"
             app:iconGravity="textStart"
-            app:iconTint="@color/black" />
+            app:iconTint="@color/colorAccent" />
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -209,10 +209,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/colorPrimary"
-        app:itemBackground="@color/colorPrimary"
+        app:itemBackground="@drawable/appbar_gradient"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
-        app:menu="@menu/menu_navigation" />
+        app:menu="@menu/menu_navigation"
+        android:layout_marginTop="12dp"/>
 
 
 </RelativeLayout>

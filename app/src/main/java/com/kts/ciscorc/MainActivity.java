@@ -11,6 +11,7 @@ import com.kts.ciscorc.dbase.NoteDataReader;
 import com.kts.ciscorc.dbase.NoteDataSource;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -50,10 +52,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         adapter = new NoteAdapter(noteDataReader, this);
         adapter.setOnMenuItemClickListener(new NoteAdapter.OnMenuItemClickListener() {
-//            @Override
-//            public void onItemEditClick(Note note) {
-//                editElement(note);
-//            }
+
 
             @Override
             public void onItemDeleteClick(Note note) {
@@ -68,6 +67,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         dataUpdated();
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null){
+            actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.appbar_gradient));
+        }
     }
 
     private void initDataSource() {

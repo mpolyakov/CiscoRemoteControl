@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#1976D2</color>
-    <color name="colorPrimaryDark">#616161</color>
+    <color name="colorPrimaryDark">#1c7dd1</color>
     <color name="colorAccent">#616161</color>
+    <color name="textColorPrimary">@color/black</color>
+
+
 
     <color name="colorMain">#2979FF</color>
     <color name="colorMainDark">#1976D2</color>
@@ -13,4 +16,20 @@
     <color name="white">#FFFFFF</color>
     <color name="greenDial">#00C853</color>
     <color name="redDisconnect">#DD2C00</color>
+    <color name="gray">#EEEEEE</color>
+    <color name="gray2">#E0E0E0</color>
+    <color name="gray3">#BDBDBD</color>
+    <color name="gray4">#9E9E9E</color>
+    <color name="gray5">#757575</color>
+
+
+    <color name="gradient1">#24adf5</color>
+    <color name="gradient2">#1c7dd1</color>
+    <color name="gradient3">#1346a8</color>
+    <color name="gradient4">#103198</color>
+
+
+
+
+
 </resources>

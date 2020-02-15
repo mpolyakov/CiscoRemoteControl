@@ -1,39 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="5dp"
     android:id="@+id/parent_phonebook">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Имя абонента"
-        android:id="@+id/textViewNameOfParticipant"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="4dp"
-        android:textSize="14sp"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="number of participant"
-        android:layout_below="@+id/textViewNameOfParticipant"
-        android:id="@+id/textViewNumberOfParticipant"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="2dp"
-        android:textSize="12sp"
-        android:textStyle="italic"
-        />
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@android:color/darker_gray"
-        android:layout_below="@+id/textViewNumberOfParticipant"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginTop="2dp"
         android:layout_marginBottom="2dp"
         android:id="@+id/delim1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/linearLayoutItem"
+        android:layout_toLeftOf="@+id/imageView"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Имя абонента"
+            android:id="@+id/textViewNameOfParticipant"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:textSize="15sp"
+            android:layout_below="@id/delim1"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="number of participant"
+            android:layout_below="@+id/textViewNameOfParticipant"
+            android:id="@+id/textViewNumberOfParticipant"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="2dp"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            />
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:tint="@color/colorMainDark"
+        app:srcCompat="@drawable/ic_call_black_24dp" />
+
 
 </RelativeLayout>

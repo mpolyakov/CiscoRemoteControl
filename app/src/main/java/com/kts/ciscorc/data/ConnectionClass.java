@@ -72,14 +72,14 @@ public class ConnectionClass {
             return connection.getResponseMessage();
 
         } catch (SocketTimeoutException e) {
-            return e.toString() + " Видеотерминал не отвечает";
+            return e.toString() + " Endpoint does not responding";
         } catch (UnknownHostException e) {
-            return e.toString() + " Неизвестный хост";
+            return " Uncknown host";
         } catch (IOException e) {
-            return e.toString() + " Запрос не авторизован";
+            return e.toString() + " Request unautorized";
         } catch (Exception e) {
             e.printStackTrace();
-            return e.toString() + " Видеотерминал не отвечает";
+            return e.toString() + " Endpoint does not responding";
         }
 
     }

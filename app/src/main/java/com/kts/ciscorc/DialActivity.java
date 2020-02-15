@@ -1,6 +1,7 @@
 package com.kts.ciscorc;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -18,8 +19,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.kts.ciscorc.fragments.FragmentDial;
 import com.kts.ciscorc.fragments.FragmentSelfView;
 
-import static com.kts.ciscorc.data.ConnectionClass.methodGET;
-
 public class DialActivity extends AppCompatActivity {
     FragmentDial fragmentDial;
     FragmentSelfView fragmentSelfView;
@@ -33,7 +32,7 @@ public class DialActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dial);
-        getWindow().getDecorView().setBackgroundColor(Color.WHITE);
+
 
         init();
 
@@ -50,12 +49,12 @@ public class DialActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
                     case R.id.phonebook:
                         startActivity(new Intent(getApplicationContext(), PhonebookActivity.class));
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         finish();
                         return true;
                     case R.id.info:
                         startActivity(new Intent(getApplicationContext(), InfoActivity.class));
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         finish();
                         return true;
                     case R.id.dial:
@@ -85,6 +84,7 @@ public class DialActivity extends AppCompatActivity {
 
     public void acceptDial(View view) {
 
+
     }
 
     public void rejectDisconnect(View view) {
@@ -102,6 +102,13 @@ public class DialActivity extends AppCompatActivity {
         toggleButtonDial.setChecked(true);
 
         dialNum = findViewById(R.id.editTextDialNumber);
+
+        getWindow().getDecorView().setBackgroundColor(Color.WHITE);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null){
+            actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.appbar_gradient));
+        }
 
 
     }
