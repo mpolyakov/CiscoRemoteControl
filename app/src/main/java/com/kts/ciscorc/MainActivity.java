@@ -101,25 +101,6 @@ public class MainActivity extends AppCompatActivity {
         dataUpdated();
     }
 
-//    private void addElement(){
-//        LayoutInflater factory = LayoutInflater.from(this);
-//        final View alertView = factory.inflate(R.layout.layout_add_note, null);
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setView(alertView);
-//        builder.setTitle(R.string.alert_title_add);
-//        builder.setNegativeButton(R.string.alert_cancel, null);
-//        builder.setPositiveButton(R.string.menu_add, new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int id) {
-//                EditText editTextNote = alertView.findViewById(R.id.editTextNote);
-//                EditText editTextNoteTitle = alertView.findViewById(R.id.editTextNoteTitle);
-//                notesDataSource.addNote(editTextNoteTitle.getText().toString(), editTextNote.getText().toString(), "name", "pass", "platform");
-//                dataUpdated();
-//            }
-//        });
-//        builder.show();
-//    }
-
     private void deleteElement(Note note) {
         notesDataSource.deleteNote(note);
         dataUpdated();

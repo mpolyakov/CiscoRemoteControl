@@ -86,6 +86,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
                                         presenter.setIpAddress(note.getIpAddr());
                                         presenter.setLogin(note.getUsername());
                                         presenter.setPassword(note.getPassword());
+                                        presenter.setCodecPlatform(note.getPlatform());
                                         Intent intent = new Intent(mContext, DialActivity.class);
                                         mContext.startActivity(intent);
                                     }

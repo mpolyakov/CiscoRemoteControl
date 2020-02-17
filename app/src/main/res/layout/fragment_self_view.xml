@@ -6,9 +6,190 @@
     tools:context=".fragments.FragmentSelfView">
 
     <TextView
+        android:id="@+id/textViewtest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="20sp" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Страница селфи" />
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_weight="1"/>
+
+
+        <LinearLayout
+            android:id="@+id/linearLayoutSV1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_weight="3">
+
+            <ToggleButton
+                android:id="@+id/toggleSV1"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:background="@drawable/toggle_selector_selfview"
+                android:drawableTint="@color/colorMainDark"
+                android:text=""
+                android:textColor="@color/colorPrimary"
+                android:textOff=""
+                android:textOn="" />
+
+            <ToggleButton
+                android:id="@+id/toggleSV2"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_toEndOf="@+id/toggleSV1"
+                android:background="@drawable/toggle_selector_selfview"
+                android:drawableTint="@color/colorMainDark"
+
+                android:text=""
+                android:textColor="@color/colorPrimary"
+                android:textOff=""
+                android:textOn="" />
+
+            <ToggleButton
+                android:id="@+id/toggleSV3"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_toEndOf="@+id/toggleSV2"
+                android:background="@drawable/toggle_selector_selfview"
+                android:drawableTint="@color/colorMainDark"
+
+                android:text=""
+                android:textColor="@color/colorPrimary"
+                android:textOff=""
+                android:textOn="" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linearLayoutSV2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="3">
+
+            <ToggleButton
+                android:id="@+id/toggleSV4"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:background="@drawable/toggle_selector_selfview"
+                android:drawableTint="@color/colorMainDark"
+
+                android:text=""
+                android:textColor="@color/colorPrimary"
+                android:textOff=""
+                android:textOn="" />
+
+            <ToggleButton
+                android:id="@+id/toggleSV5"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_toEndOf="@+id/toggleSV4"
+                android:background="@drawable/toggle_selector_selfview"
+                android:drawableTint="@color/colorMainDark"
+
+                android:text=""
+                android:textColor="@color/colorPrimary"
+                android:textOff=""
+                android:textOn="" />
+
+            <ToggleButton
+                android:id="@+id/toggleSV6"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_toEndOf="@+id/toggleSV5"
+                android:background="@drawable/toggle_selector_selfview"
+                android:drawableTint="@color/colorMainDark"
+                android:text=""
+                android:textColor="@color/colorPrimary"
+                android:textOff=""
+                android:textOn="" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutSV3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_weight="3">
+
+            <ToggleButton
+                android:id="@+id/toggleSV7"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:background="@drawable/toggle_selector_selfview"
+                android:drawableTint="@color/colorMainDark"
+
+                android:text=""
+                android:textColor="@color/colorPrimary"
+                android:textOff=""
+                android:textOn="" />
+
+            <ToggleButton
+                android:id="@+id/toggleSV8"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_toEndOf="@+id/toggleSV7"
+                android:background="@drawable/toggle_selector_selfview"
+                android:drawableTint="@color/colorMainDark"
+                android:enabled="false"
+                android:text=""
+                android:textColor="@color/colorPrimary"
+                android:textOff=""
+                android:textOn=""
+                android:visibility="invisible" />
+
+            <ToggleButton
+                android:id="@+id/toggleSV9"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:background="@drawable/toggle_selector_selfview"
+                android:drawableTint="@color/colorMainDark"
+                android:layout_toEndOf="@+id/toggleSV8"
+                android:text=""
+                android:textColor="@color/colorPrimary"
+                android:textOff=""
+                android:textOn="" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
 
 
 </FrameLayout>

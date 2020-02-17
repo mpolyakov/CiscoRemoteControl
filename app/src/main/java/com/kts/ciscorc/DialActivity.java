@@ -13,9 +13,12 @@ import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.kts.ciscorc.fragments.DtmfDialogFragment;
 import com.kts.ciscorc.fragments.FragmentDial;
 import com.kts.ciscorc.fragments.FragmentSelfView;
 
@@ -26,7 +29,10 @@ public class DialActivity extends AppCompatActivity {
     FragmentTransaction fragmentTransaction;
     ToggleButton toggleButtonDial;
     ToggleButton toggleButtonSelfView;
+    ToggleButton toggleButtonSV1, toggleButtonSV2, toggleButtonSV3, toggleButtonSV4, toggleButtonSV5, toggleButtonSV6, toggleButtonSV7, toggleButtonSV8, toggleButtonSV9;
     EditText dialNum;
+    Spinner spinnerCallType, spinnerBandwidth;
+    String selectedCallType,selectedBandwidht;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,10 +86,13 @@ public class DialActivity extends AppCompatActivity {
         fragmentTransaction.commit();
         toggleButtonDial.setChecked(false);
         toggleButtonSelfView.setChecked(true);
+
     }
 
-    public void acceptDial(View view) {
 
+    public void acceptDial(View view) {
+        selectedCallType = spinnerCallType.getSelectedItem().toString();
+        selectedBandwidht = spinnerCallType.getSelectedItem().toString();
 
     }
 
@@ -100,6 +109,9 @@ public class DialActivity extends AppCompatActivity {
         toggleButtonDial = findViewById(R.id.toggleDial);
         toggleButtonSelfView = findViewById(R.id.toggleSelfView);
         toggleButtonDial.setChecked(true);
+        spinnerCallType = findViewById(R.id.spinner1);
+        spinnerBandwidth = findViewById(R.id.spinner2);
+
 
         dialNum = findViewById(R.id.editTextDialNumber);
 
@@ -110,13 +122,21 @@ public class DialActivity extends AppCompatActivity {
             actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.appbar_gradient));
         }
 
-
     }
 
-    private void getIncomingIntent(){
-        if (getIntent().hasExtra("address_of_remote_endpoint")){
-            String receivedNumer = getIntent().getStringExtra("address_of_remote_endpoint");
-            dialNum.setText(receivedNumer);
-        }
+    public void requestDTMF(View view) {
+        FragmentManager manager = getSupportFragmentManager();
+        DtmfDialogFragment dtmfDialogFragment = new DtmfDialogFragment();
+        dtmfDialogFragment.show(manager, "DTMF Dialog");
     }
+
+
+
+
+//    private void getIncomingIntent(){
+//        if (getIntent().hasExtra("address_of_remote_endpoint")){
+//            String receivedNumer = getIntent().getStringExtra("address_of_remote_endpoint");
+//            dialNum.setText(receivedNumer);
+//        }
+//    }
 }

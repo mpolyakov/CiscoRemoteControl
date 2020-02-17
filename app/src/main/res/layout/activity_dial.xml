@@ -27,8 +27,7 @@
             android:text="DialPage"
             android:textColor="@color/colorPrimary"
             android:textOff="DialPage"
-            android:textOn="DialPage"
-            app:iconTint="@color/greenDial"/>
+            android:textOn="DialPage"/>
 
         <ToggleButton
             android:id="@+id/toggleSelfView"
