@@ -148,6 +148,7 @@ public class ConnectionClass {
             while ((line = in.readLine()) != null) {
                 result += line;
             }
+            connection.disconnect();
             return result;
 
         } catch (SocketTimeoutException e) {

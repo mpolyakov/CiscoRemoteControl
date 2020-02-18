@@ -13,6 +13,24 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+
+
+        <ToggleButton
+            android:id="@+id/toggleSelfView"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_alignParentEnd="true"
+            android:layout_weight="1"
+            android:background="@drawable/toggle_selector"
+            android:drawableTop="@drawable/ic_picture_in_picture_alt_black_24dp"
+            android:drawableTint="@color/colorMainDark"
+            android:onClick="changeFragment2"
+            android:text="SelfView"
+            android:textColor="@color/colorPrimary"
+            android:textOff="SelfView"
+            android:textOn="SelfView" />
+
         <ToggleButton
             android:id="@+id/toggleDial"
             style="?android:attr/borderlessButtonStyle"
@@ -30,20 +48,20 @@
             android:textOn="DialPage"/>
 
         <ToggleButton
-            android:id="@+id/toggleSelfView"
+            android:id="@+id/toggleCameraControl"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="55dp"
             android:layout_alignParentEnd="true"
             android:layout_weight="1"
             android:background="@drawable/toggle_selector"
-            android:drawableTop="@drawable/ic_picture_in_picture_alt_black_24dp"
+            android:drawableTop="@drawable/ic_videocam_black_24dp"
             android:drawableTint="@color/colorMainDark"
-            android:onClick="changeFragment2"
-            android:text="SelfView"
+            android:onClick="changeFragment3"
+            android:text="Camera"
             android:textColor="@color/colorPrimary"
-            android:textOff="SelfView"
-            android:textOn="SelfView"
+            android:textOff="Camera"
+            android:textOn="Camera"
 
             />
     </LinearLayout>
@@ -82,7 +100,8 @@
             app:icon="@drawable/ic_call_black_24dp"
             app:iconGravity="textStart"
             app:iconTint="@color/greenDial"
-            android:textColor="@color/greenDial"/>
+            android:textColor="@color/greenDial"
+            android:onClick="acceptDial"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDisconnect"
@@ -98,10 +117,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/secondLinearLayout"
+        android:id="@+id/thirdLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/firstLinearLayout"
+        android:layout_above="@+id/secondLinearLayout"
         android:orientation="horizontal">
 
         <com.google.android.material.button.MaterialButton
@@ -111,7 +130,8 @@
             app:cornerRadius="8dp"
             app:icon="@drawable/ic_volume_down_black_24dp"
             app:iconGravity="textStart"
-            app:iconTint="@color/colorAccent" />
+            app:iconTint="@color/colorAccent"
+            android:onClick="volumeDecrease"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnVolumeUP"
@@ -120,15 +140,16 @@
             app:cornerRadius="8dp"
             app:icon="@drawable/ic_volume_up_black_24dp"
             app:iconGravity="textStart"
-            app:iconTint="@color/colorAccent" />
+            app:iconTint="@color/colorAccent"
+            android:onClick="volumeIncrease"/>
     </LinearLayout>
 
 
     <LinearLayout
-        android:id="@+id/thirdLinearLayout"
+        android:id="@+id/secondLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/secondLinearLayout"
+        android:layout_above="@+id/firstLinearLayout"
         android:orientation="horizontal">
 
         <com.google.android.material.button.MaterialButton
@@ -138,7 +159,8 @@
             app:cornerRadius="8dp"
             app:icon="@drawable/ic_mic_black_24dp"
             app:iconGravity="textStart"
-            app:iconTint="@color/colorAccent" />
+            app:iconTint="@color/colorAccent"
+            android:onClick="micOn"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnMicOff"
@@ -147,33 +169,8 @@
             app:cornerRadius="8dp"
             app:icon="@drawable/ic_mic_off_black_24dp"
             app:iconGravity="textStart"
-            app:iconTint="@color/colorAccent" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/fourLinearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/thirdLinearLayout"
-        android:orientation="horizontal">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnShare"
-            android:text="Share"
-            style="@style/buttonsStyle"
-            app:cornerRadius="8dp"
-            app:icon="@drawable/ic_screen_share_black_24dp"
-            app:iconGravity="textStart"
-            app:iconTint="@color/colorAccent" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnStopShare"
-            android:text="Stop Share"
-            style="@style/buttonsStyle"
-            app:cornerRadius="8dp"
-            app:icon="@drawable/ic_stop_screen_share_black_24dp"
-            app:iconGravity="textStart"
-            app:iconTint="@color/colorAccent" />
+            app:iconTint="@color/colorAccent"
+            android:onClick="micOff"/>
     </LinearLayout>
 
     <LinearLayout
@@ -184,22 +181,53 @@
         android:orientation="horizontal">
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnShare"
+            android:text="Share"
+            style="@style/buttonsStyle"
+            app:cornerRadius="8dp"
+            app:icon="@drawable/ic_screen_share_black_24dp"
+            app:iconGravity="textStart"
+            app:iconTint="@color/colorAccent"
+            android:onClick="startShare"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnStopShare"
+            android:text="Stop Share"
+            style="@style/buttonsStyle"
+            app:cornerRadius="8dp"
+            app:icon="@drawable/ic_stop_screen_share_black_24dp"
+            app:iconGravity="textStart"
+            app:iconTint="@color/colorAccent"
+            android:onClick="stopShare"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fourLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/thirdLinearLayout"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSoundOff"
             style="@style/buttonsStyle"
-            android:text="Sound Off"
+            android:text="On/Off"
             app:cornerRadius="8dp"
             app:icon="@drawable/ic_volume_off_black_24dp"
             app:iconGravity="textStart"
-            app:iconTint="@color/colorAccent" />
+            app:iconTint="@color/colorAccent"
+            android:onClick="volumeToggleMute"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnVideoMute"
             style="@style/buttonsStyle"
-            android:text="video mute"
+            android:text="DTMF"
             app:cornerRadius="8dp"
-            app:icon="@drawable/ic_videocam_off_black_24dp"
+            app:icon="@drawable/ic_dialpad_black_24dp"
             app:iconGravity="textStart"
-            app:iconTint="@color/colorAccent" />
+            app:iconTint="@color/colorAccent"
+            android:onClick="requestDTMF"
+            />
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

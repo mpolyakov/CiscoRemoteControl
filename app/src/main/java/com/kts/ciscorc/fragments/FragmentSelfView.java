@@ -15,8 +15,8 @@ import android.widget.ToggleButton;
 import com.kts.ciscorc.R;
 
 public class FragmentSelfView extends Fragment {
-    ToggleButton toggleButtonSV1, toggleButtonSV2, toggleButtonSV3, toggleButtonSV4, toggleButtonSV5, toggleButtonSV6, toggleButtonSV7, toggleButtonSV8, toggleButtonSV9;
-    TextView textViewtest;
+    private ToggleButton toggleButtonSV1, toggleButtonSV2, toggleButtonSV3, toggleButtonSV4, toggleButtonSV5, toggleButtonSV6, toggleButtonSV7, toggleButtonSV8, toggleButtonSV9;
+    private TextView textViewtest;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
