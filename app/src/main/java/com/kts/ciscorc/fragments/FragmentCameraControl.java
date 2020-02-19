@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.Switch;
@@ -14,6 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import com.kts.ciscorc.MainPresenter;
 import com.kts.ciscorc.R;
+import com.kts.ciscorc.data.ConnectionClass;
 
 public class FragmentCameraControl extends Fragment {
     ImageButton imageButtonCamUp, imageButtonCamLeft, imageButtonCamRight, imageButtonCamDown;
@@ -59,6 +59,7 @@ public class FragmentCameraControl extends Fragment {
                 // do something, the isChecked will be
                 // true if the switch is in the On position
                 if (isChecked){
+                    switchOnSpeakerTrack();
                     textView.setText("ST on");
                     aSwitch.setTextOn("SpeakerTrack mode");
                     imageButtonCamUp.setEnabled(false);
@@ -66,6 +67,7 @@ public class FragmentCameraControl extends Fragment {
                     imageButtonCamRight.setEnabled(false);
                     imageButtonCamDown.setEnabled(false);
                 } else{
+                    switchOffSpeakerTrack();
                     textView.setText("ST off");
                     aSwitch.setTextOff("Manual mode");
                     imageButtonCamUp.setEnabled(true);
@@ -80,6 +82,29 @@ public class FragmentCameraControl extends Fragment {
             public void onClick(View v) {
                 textView.setText("Up");
 
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String body = getString(R.string.cameraTiltUp);
+                        ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
+                    }
+                }).start();
+
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String body = getString(R.string.cameraTiltStop);
+                        ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
+                    }
+                }).start();
+
+
             }
         });
 
@@ -87,6 +112,27 @@ public class FragmentCameraControl extends Fragment {
             public void onClick(View v) {
                 textView.setText("Left");
 
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String body = getString(R.string.cameraPanLeft);
+                        ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
+                    }
+                }).start();
+
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String body = getString(R.string.cameraPanStop);
+                        ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
+                    }
+                }).start();
             }
         });
 
@@ -94,27 +140,94 @@ public class FragmentCameraControl extends Fragment {
             public void onClick(View v) {
                 textView.setText("Right");
 
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String body = getString(R.string.cameraPanRight);
+                        ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
+                    }
+                }).start();
+
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String body = getString(R.string.cameraPanStop);
+                        ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
+                    }
+                }).start();
             }
+
         });
 
         imageButtonCamDown.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 textView.setText("Down");
 
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String body = getString(R.string.cameraTiltDown);
+                        ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
+                    }
+                }).start();
+
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String body = getString(R.string.cameraTiltStop);
+                        ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
+                    }
+                }).start();
+
             }
         });
-
-
-
-
-
-
-
 
 
         return v;
     }
 
+
+
+    private void switchOffSpeakerTrack() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String body = getString(R.string.speakerTrackDeactivate);
+                ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
+            }
+        }).start();
+    }
+
+    private void switchOnSpeakerTrack() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String body = getString(R.string.speakerTrackModeAuto);
+                ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
+            }
+        }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String body = getString(R.string.speakerTrackActivate);
+                ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
+            }
+        }).start();
+
+    }
 
 
 }

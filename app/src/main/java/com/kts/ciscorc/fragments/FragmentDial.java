@@ -16,7 +16,7 @@ import com.kts.ciscorc.R;
 
 public class FragmentDial extends Fragment {
     EditText dialNum;
-    Spinner spinnerCallType, spinnerBandwidth;
+
     final MainPresenter presenter = MainPresenter.getInstance();
 
     @Override
@@ -27,10 +27,6 @@ public class FragmentDial extends Fragment {
 
         dialNum = layout.findViewById(R.id.editTextDialNumber);
         dialNum.setText(presenter.getDialNumber());
-
-        spinnerCallType = layout.findViewById(R.id.spinner1);
-        spinnerBandwidth = layout.findViewById(R.id.spinner2);
-
         presenter.setDialNumber(null);
 
         return layout;

@@ -12,11 +12,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.kts.ciscorc.MainPresenter;
 import com.kts.ciscorc.R;
+import com.kts.ciscorc.data.ConnectionClass;
 
 public class FragmentSelfView extends Fragment {
     private ToggleButton toggleButtonSV1, toggleButtonSV2, toggleButtonSV3, toggleButtonSV4, toggleButtonSV5, toggleButtonSV6, toggleButtonSV7, toggleButtonSV8, toggleButtonSV9;
     private TextView textViewtest;
+    final MainPresenter presenter = MainPresenter.getInstance();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -96,7 +99,7 @@ public class FragmentSelfView extends Fragment {
         toggleButtonSV5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (toggleButtonSV5.isChecked()){
-                    setFullScreenSelfView();
+                    setSelfViewFullscreen();
                     setTButtons(toggleButtonSV5);
                     textViewtest.setText("FullscreenMode:");
                 } else {
@@ -157,15 +160,36 @@ public class FragmentSelfView extends Fragment {
         return v;
     }
 
-    private void setFullScreenSelfView() {
-
-    }
-
     private void removeSelfView() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String body = getString(R.string.removeSelfView);
+                ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
+            }
+        }).start();
 
     }
 
-    private void setSelfView(String position) {
+    private void setSelfView(final String position) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String body = getString(R.string.setSelfViewPart1) + position + getString(R.string.setSelfViewPart2);
+                ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
+            }
+        }).start();
+
+    }
+
+    private void setSelfViewFullscreen() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String body = getString(R.string.setSelfViewFullscreen);
+                ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
+            }
+        }).start();
 
     }
 

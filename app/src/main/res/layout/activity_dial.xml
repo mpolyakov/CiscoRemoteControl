@@ -111,7 +111,8 @@
             app:icon="@drawable/ic_call_end_black_24dp"
             app:iconGravity="textStart"
             android:textColor="@color/redDisconnect"
-            app:iconTint="@color/redDisconnect" />
+            app:iconTint="@color/redDisconnect"
+            android:onClick="rejectDisconnect"/>
 
 
     </LinearLayout>

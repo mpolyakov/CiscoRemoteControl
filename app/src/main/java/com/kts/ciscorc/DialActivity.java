@@ -3,6 +3,7 @@ package com.kts.ciscorc;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -40,8 +41,7 @@ public class DialActivity extends AppCompatActivity {
     ToggleButton toggleButtonDial, toggleButtonSelfView, toggleButtonCamera;
     MaterialButton volDecrease, volIncrease;
     EditText dialNum;
-    Spinner spinnerCallType, spinnerBandwidth;
-    String selectedCallType, selectedBandwidht;
+
     String resultXml;
     final Handler handler = new Handler();
     final MainPresenter presenter = MainPresenter.getInstance();
@@ -109,29 +109,6 @@ public class DialActivity extends AppCompatActivity {
         toggleButtonCamera.setChecked(true);
     }
 
-
-    public void acceptDial(View view) {
-        selectedCallType = spinnerCallType.getSelectedItem().toString();
-        selectedBandwidht = spinnerCallType.getSelectedItem().toString();
-        final String[] arr = selectedBandwidht.split(" ");
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String body = getString(R.string.dialPart1)
-                        + dialNum.getText().toString()
-                        + getString(R.string.dialPart2)
-                        + selectedCallType
-                        + getString(R.string.dialPart3)
-                        + arr[0] + getString(R.string.dialPart4);
-                ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
-            }
-        }).start();
-    }
-
-    public void rejectDisconnect(View view) {
-    }
-
     public void init() {
         fragmentDial = new FragmentDial();
         fragmentSelfView = new FragmentSelfView();
@@ -144,8 +121,7 @@ public class DialActivity extends AppCompatActivity {
         toggleButtonSelfView = findViewById(R.id.toggleSelfView);
         toggleButtonCamera = findViewById(R.id.toggleCameraControl);
         toggleButtonDial.setChecked(true);
-        spinnerCallType = findViewById(R.id.spinner1);
-        spinnerBandwidth = findViewById(R.id.spinner2);
+
         volDecrease = findViewById(R.id.btnVolumeDown);
         volIncrease = findViewById(R.id.btnVolumeUP);
 
@@ -159,6 +135,36 @@ public class DialActivity extends AppCompatActivity {
             actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.appbar_gradient));
         }
 
+    }
+
+    public void acceptDial(View view) {
+
+        final String[] arr = ((Spinner) fragmentDial.getView().findViewById(R.id.spinner2)).getSelectedItem().toString().split(" ");
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String body = getString(R.string.dialPart1)
+                        + ((EditText) fragmentDial.getView().findViewById(R.id.editTextDialNumber)).getText().toString()
+                        + getString(R.string.dialPart2)
+                        + ((Spinner) fragmentDial.getView().findViewById(R.id.spinner1)).getSelectedItem().toString()
+                        + getString(R.string.dialPart3)
+                        + arr[0]
+                        + getString(R.string.dialPart4);
+                ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
+            }
+        }).start();
+
+    }
+
+    public void rejectDisconnect(View view) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String body = getString(R.string.disconnect);
+                ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
+            }
+        }).start();
     }
 
     public void requestDTMF(View view) {
