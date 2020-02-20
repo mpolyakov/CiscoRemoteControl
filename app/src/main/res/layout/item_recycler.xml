@@ -21,7 +21,7 @@
         android:id="@+id/image_circle"
         android:layout_width="80sp"
         android:layout_height="80sp"
-        android:src="@drawable/kitplus"
+        android:src="@drawable/room_kit"
         android:clickable="true"
         android:layout_below="@+id/delimPh"
         android:layout_marginStart="8dp"/>

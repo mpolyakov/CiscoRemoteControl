@@ -21,12 +21,16 @@ import com.kts.ciscorc.DialActivity;
 import com.kts.ciscorc.MainPresenter;
 import com.kts.ciscorc.R;
 import com.kts.ciscorc.data.ConnectionClass;
+import com.kts.ciscorc.data.ImageSetter;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     private NoteDataReader noteDataReader;
     private OnMenuItemClickListener itemMenuClickListener;
     private Context mContext;
     final MainPresenter presenter = MainPresenter.getInstance();
+
 
     public NoteAdapter(NoteDataReader noteDataReader, Context mContext){
         this.noteDataReader = noteDataReader;
@@ -62,6 +66,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView textNote;
         private TextView textIPaddr;
+        private CircleImageView circleImageView;
         private RelativeLayout circleParent;
         private Note note;
 
@@ -69,6 +74,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             super(itemView);
             textNote = itemView.findViewById(R.id.textTitle);
             textIPaddr = itemView.findViewById(R.id.textIPaddr);
+            circleImageView = itemView.findViewById(R.id.image_circle);
             circleParent = itemView.findViewById(R.id.circle_parent);
             circleParent.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -114,6 +120,8 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             this.note = note;
             textNote.setText(note.getTitle());
             textIPaddr.setText(note.getIpAddr());
+            String platformModel = note.getPlatform();
+            circleImageView.setImageResource(ImageSetter.adviceImage(platformModel));
         }
 
         private void showPopupMenu(View view){

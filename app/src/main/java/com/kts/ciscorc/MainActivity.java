@@ -52,8 +52,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         adapter = new NoteAdapter(noteDataReader, this);
         adapter.setOnMenuItemClickListener(new NoteAdapter.OnMenuItemClickListener() {
-
-
             @Override
             public void onItemDeleteClick(Note note) {
                 deleteElement(note);
