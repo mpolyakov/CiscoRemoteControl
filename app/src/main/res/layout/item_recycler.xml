@@ -6,6 +6,7 @@
     android:id="@+id/circle_parent"
     android:clickable="true"
     android:focusable="true"
+    android:layout_margin="8dp"
     android:background="?android:attr/selectableItemBackground">
 
     <View
@@ -14,7 +15,7 @@
         android:background="@android:color/darker_gray"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="10dp"
+
         android:id="@+id/delimPh" />
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -24,7 +25,9 @@
         android:src="@drawable/room_kit"
         android:clickable="true"
         android:layout_below="@+id/delimPh"
-        android:layout_marginStart="8dp"/>
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"/>
 
     <TextView
         android:id="@+id/textTitle"
@@ -34,7 +37,8 @@
         android:text="TextView"
         android:textSize="16sp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/textIPaddr"
