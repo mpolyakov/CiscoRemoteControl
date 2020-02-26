@@ -22,22 +22,12 @@ public class LoginActivity extends AppCompatActivity {
     MaterialButton mButtonConnect;
     TextView mTextView;
     final MainPresenter presenter = MainPresenter.getInstance();
-    String resultXml;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initUI();
-
-
-
-//        final ConnectionClass connectionClass = new ConnectionClass();
-
-//        Intent intent = new Intent(LoginActivity.this, InfoActivity.class);
-//        startActivity(intent);
 
         mButtonConnect.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                                     presenter.setPassword(mPassword.getText().toString());
                                     Intent intent = new Intent(LoginActivity.this, InfoActivity.class);
                                     startActivity(intent);
+                                    finish();
                                 }
                             }
                         });
@@ -67,8 +58,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
-
 
     private void initUI() {
         mIpAddr = findViewById(R.id.textInputIP);
@@ -83,6 +72,5 @@ public class LoginActivity extends AppCompatActivity {
             actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.appbar_gradient));
         }
     }
-
 
 }

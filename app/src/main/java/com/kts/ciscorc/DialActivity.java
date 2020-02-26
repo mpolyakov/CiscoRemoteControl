@@ -3,7 +3,6 @@ package com.kts.ciscorc;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -15,22 +14,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
-import com.google.gson.Gson;
 import com.kts.ciscorc.data.ConnectionClass;
-import com.kts.ciscorc.data.model.phonebook.PhonebookRequest;
 import com.kts.ciscorc.fragments.DtmfDialogFragment;
 import com.kts.ciscorc.fragments.FragmentCameraControl;
 import com.kts.ciscorc.fragments.FragmentDial;
 import com.kts.ciscorc.fragments.FragmentSelfView;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.XML;
 
 public class DialActivity extends AppCompatActivity {
     FragmentDial fragmentDial;
@@ -250,11 +242,4 @@ public class DialActivity extends AppCompatActivity {
         }).start();
     }
 
-
-//    private void getIncomingIntent(){
-//        if (getIntent().hasExtra("address_of_remote_endpoint")){
-//            String receivedNumer = getIntent().getStringExtra("address_of_remote_endpoint");
-//            dialNum.setText(receivedNumer);
-//        }
-//    }
 }
