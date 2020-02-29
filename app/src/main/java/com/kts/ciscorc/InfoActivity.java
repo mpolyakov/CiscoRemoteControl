@@ -52,7 +52,6 @@ public class InfoActivity extends AppCompatActivity {
             actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.appbar_gradient));
         }
 
-
         //Инициализация меню
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -122,21 +121,90 @@ public class InfoActivity extends AppCompatActivity {
     }
 
     private void displayInfo(StatusRequest statusRequest) {
-        presenter.setCodecPlatform(statusRequest.getStatus().getSystemUnit().getProductId());
-        if (statusRequest.getStatus().getSystemUnit().getState().getNumberOfActiveCalls().equals("0")) {
+
+        String ipAddress = null;
+        try {
+            ipAddress = statusRequest.getStatus().getNetwork().getIPv4().getAddress();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        textIPaddress.setText(ipAddress);
+
+        String platformID = null;
+        try {
+            platformID = statusRequest.getStatus().getSystemUnit().getProductId();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        textPlatformID.setText(platformID);
+        presenter.setCodecPlatform(platformID);
+
+        String softwareName = null;
+        try {
+            softwareName = statusRequest.getStatus().getSystemUnit().getSoftware().getDisplayName();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        textSoftware.setText(softwareName);
+
+        String numActiveCalls = null;
+        try {
+            numActiveCalls = statusRequest.getStatus().getSystemUnit().getState().getNumberOfActiveCalls();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (numActiveCalls.equals("0")) {
             textStatus.setText("Out of call");
         } else textStatus.setText("In a call");
-        textPlatformID.setText(statusRequest.getStatus().getSystemUnit().getProductId());
-        textSN.setText(statusRequest.getStatus().getSystemUnit().getHardware().getModule().getSerialNumber());
-        textSoftware.setText(statusRequest.getStatus().getSystemUnit().getSoftware().getDisplayName());
-        textEncryption.setText(statusRequest.getStatus().getSystemUnit().getSoftware().getOptionKeys().getEncryption());
-        textMultisite.setText(statusRequest.getStatus().getSystemUnit().getSoftware().getOptionKeys().getMultiSite());
-        textRemoteMon.setText(statusRequest.getStatus().getSystemUnit().getSoftware().getOptionKeys().getRemoteMonitoring());
 
-        textName.setText(statusRequest.getStatus().getUserInterface().getContactInfo().getName());
-        textNumber.setText(statusRequest.getStatus().getUserInterface().getContactInfo().getContactMethod().get(0).getNumber());
+        String sn = null;
+        try {
+            sn = statusRequest.getStatus().getSystemUnit().getHardware().getModule().getSerialNumber();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        textSN.setText(sn);
 
-        textIPaddress.setText(statusRequest.getStatus().getNetwork().getIPv4().getAddress());
+        String encrypt = null;
+        try {
+            encrypt = statusRequest.getStatus().getSystemUnit().getSoftware().getOptionKeys().getEncryption();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        textEncryption.setText(encrypt);
+
+        String multisite = null;
+        try {
+            multisite = statusRequest.getStatus().getSystemUnit().getSoftware().getOptionKeys().getMultiSite();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        textMultisite.setText(multisite);
+
+        String remMon = null;
+        try {
+            remMon = statusRequest.getStatus().getSystemUnit().getSoftware().getOptionKeys().getRemoteMonitoring();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        textRemoteMon.setText(remMon);
+
+        String name = null;
+        try {
+            name = statusRequest.getStatus().getUserInterface().getContactInfo().getName();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        textName.setText(name);
+
+//        String number = null;
+//        try {
+//            number = statusRequest.getStatus().getUserInterface().getContactInfo().getContactMethod().getNumber();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        textNumber.setText(number);
+
 
     }
 

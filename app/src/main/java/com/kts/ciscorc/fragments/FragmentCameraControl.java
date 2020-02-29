@@ -36,17 +36,16 @@ public class FragmentCameraControl extends Fragment {
         aSwitch = v.findViewById(R.id.switchSpeakerTrack);
         textView = v.findViewById(R.id.textViewtestwdwd);
 
-        if ((presenter.getCodecPlatform().equals("Cisco Webex Room Kit"))
-                ||(presenter.getCodecPlatform().equals("Cisco Webex Room Kit Mini"))
-                ||(presenter.getCodecPlatform().equals("Cisco Webex Codec Plus"))
-                ||(presenter.getCodecPlatform().equals("Cisco Webex Room 55"))){
+        if ((ConnectionClass.allCodecsWithSpeakerTrack.contains(presenter.getCodecPlatform()))){
             aSwitch.setEnabled(true);
+            aSwitch.setChecked(true);
             imageButtonCamUp.setEnabled(false);
             imageButtonCamLeft.setEnabled(false);
             imageButtonCamRight.setEnabled(false);
             imageButtonCamDown.setEnabled(false);
         } else{
             aSwitch.setEnabled(false);
+            aSwitch.setChecked(false);
             imageButtonCamUp.setEnabled(true);
             imageButtonCamLeft.setEnabled(true);
             imageButtonCamRight.setEnabled(true);

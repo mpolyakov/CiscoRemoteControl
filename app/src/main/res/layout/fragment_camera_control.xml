@@ -24,12 +24,9 @@
                 android:text="SpeakerTrack "
                 android:layout_alignParentEnd="true"
                 android:layout_margin="10dp"
-                android:checked="true"
                 android:textColor="@color/colorAccent"
-                android:thumbTint="@color/colorMainDark"
-                android:trackTint="@color/colorMainDark"
-                android:textOn="SpeakerTrack"
-                android:textOff="Manual Mode" />
+                android:switchMinWidth="50dp"
+                android:theme="@style/Switch" />
 
         </RelativeLayout>
 

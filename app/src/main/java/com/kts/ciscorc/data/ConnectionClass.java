@@ -11,11 +11,19 @@ import java.net.*;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Base64;
+import java.util.List;
 
 public class ConnectionClass {
     public static URL url;
     final MainPresenter presenter = MainPresenter.getInstance();
+    public final static ArrayList<String> allCodecsWithSpeakerTrack = new ArrayList<String>(Arrays.asList(
+            "Cisco Webex Board 55", "Cisco Webex Board 55S", "Cisco Webex Board 70", "Cisco Webex Board 70S", "Cisco Webex Board 85S", "Cisco Webex Codec Plus", "Cisco Webex Codec Pro",
+            "Cisco TelePresence MX700 SpeakerTrack", "Cisco TelePresence MX800 SpeakerTrack", "Cisco TelePresence MX800 Dual", "Cisco Webex Room Kit", "Cisco Webex Room Kit Mini",
+            "Cisco Webex Room 55", "Cisco Webex Room 55 Dual", "Cisco Webex Room 70 Dual", "Cisco Webex Room 70 Dual G2", "Cisco Webex Room 70 Single",
+            "Cisco Webex Room 70 Single G2"));
 
     //Отключение проверки сертификата ->
     public static void disableSslVerification() {
@@ -68,7 +76,6 @@ public class ConnectionClass {
             connection.setRequestMethod("GET");
             connection.setConnectTimeout(5000);
             connection.connect();
-
             return connection.getResponseMessage();
 
         } catch (SocketTimeoutException e) {
@@ -81,11 +88,10 @@ public class ConnectionClass {
             e.printStackTrace();
             return e.toString() + " Endpoint does not responding";
         }
-
     }
 
     public static String methodGET(String ipaddress, String login, String password, String uriGet) {
-//        disableSslVerification();
+        disableSslVerification();
         String uri = null;
         try {
             uri = "https://" + ipaddress + uriGet;
@@ -96,8 +102,8 @@ public class ConnectionClass {
             HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
             connection.setRequestProperty("Authorization", basicAuth);
             connection.setRequestMethod("GET");
-            connection.setReadTimeout(3000);
-            connection.setConnectTimeout(3000);
+            connection.setReadTimeout(5000);
+            connection.setConnectTimeout(5000);
             connection.connect();
 
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -121,7 +127,6 @@ public class ConnectionClass {
     }
 
     public static String methodPOST(String ipaddress, String login, String password, String body) {
-        //Запрос и выдача адресной книги
 //        disableSslVerification();
         String uri = null;
         try {

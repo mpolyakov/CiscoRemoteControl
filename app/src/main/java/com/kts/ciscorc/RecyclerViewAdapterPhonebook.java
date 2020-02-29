@@ -47,7 +47,6 @@ public class RecyclerViewAdapterPhonebook extends RecyclerView.Adapter<RecyclerV
                 intent.putExtra("address_of_remote_endpoint", mPhonebookNumbers.get(position));
                 mContext.startActivity(intent);
 
-
             }
         });
 

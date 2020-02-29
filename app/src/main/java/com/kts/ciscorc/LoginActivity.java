@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -49,7 +50,6 @@ public class LoginActivity extends AppCompatActivity {
                                     presenter.setPassword(mPassword.getText().toString());
                                     Intent intent = new Intent(LoginActivity.this, InfoActivity.class);
                                     startActivity(intent);
-                                    finish();
                                 }
                             }
                         });

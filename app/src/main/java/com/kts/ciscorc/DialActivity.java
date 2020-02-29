@@ -18,11 +18,16 @@ import android.widget.ToggleButton;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
+import com.google.gson.Gson;
 import com.kts.ciscorc.data.ConnectionClass;
+import com.kts.ciscorc.data.model.status.StatusRequest;
 import com.kts.ciscorc.fragments.DtmfDialogFragment;
 import com.kts.ciscorc.fragments.FragmentCameraControl;
 import com.kts.ciscorc.fragments.FragmentDial;
 import com.kts.ciscorc.fragments.FragmentSelfView;
+
+import org.json.JSONObject;
+import org.json.XML;
 
 public class DialActivity extends AppCompatActivity {
     FragmentDial fragmentDial;
@@ -66,6 +71,7 @@ public class DialActivity extends AppCompatActivity {
                         finish();
                         return true;
                     case R.id.dial:
+                        recreate();
                         return true;
                 }
                 return false;
@@ -102,6 +108,7 @@ public class DialActivity extends AppCompatActivity {
     }
 
     public void init() {
+//        wakeUp();
         fragmentDial = new FragmentDial();
         fragmentSelfView = new FragmentSelfView();
         fragmentCameraControl = new FragmentCameraControl();
@@ -131,6 +138,33 @@ public class DialActivity extends AppCompatActivity {
 
     public void acceptDial(View view) {
 
+        final Handler handler = new Handler();
+        Thread threadStatusRequest = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                resultXml = ConnectionClass.methodGET(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), "/getxml?location=/Status/SystemUnit/State");
+                try {
+                    JSONObject json = XML.toJSONObject(resultXml); // converts xml to json
+                    final String jsonPrettyPrintString = json.toString(4); // json pretty print
+                    Gson gsonStatus = new Gson();
+                    final StatusRequest statusRequest = gsonStatus.fromJson(jsonPrettyPrintString, StatusRequest.class);
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (statusRequest.getStatus().getSystemUnit().getState().getNumberOfInProgressCalls().equals("0")) {
+                                dial();
+                            } else accept();
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        threadStatusRequest.start();
+    }
+
+    public void dial(){
         final String[] arr = ((Spinner) fragmentDial.getView().findViewById(R.id.spinner2)).getSelectedItem().toString().split(" ");
 
         new Thread(new Runnable() {
@@ -146,14 +180,60 @@ public class DialActivity extends AppCompatActivity {
                 ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
             }
         }).start();
+    }
 
+    public void accept() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String body = getString(R.string.accept);
+                ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
+            }
+        }).start();
     }
 
     public void rejectDisconnect(View view) {
+        final Handler handler = new Handler();
+        Thread threadStatusRequest = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                resultXml = ConnectionClass.methodGET(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), "/getxml?location=/Status/SystemUnit/State");
+                try {
+                    JSONObject json = XML.toJSONObject(resultXml); // converts xml to json
+                    final String jsonPrettyPrintString = json.toString(4); // json pretty print
+                    Gson gsonStatus = new Gson();
+                    final StatusRequest statusRequest = gsonStatus.fromJson(jsonPrettyPrintString, StatusRequest.class);
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (statusRequest.getStatus().getSystemUnit().getState().getNumberOfInProgressCalls().equals("0")) {
+                                disconnect();
+                            } else reject();
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        threadStatusRequest.start();
+    }
+
+    public void disconnect() {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 String body = getString(R.string.disconnect);
+                ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
+            }
+        }).start();
+    }
+
+    public void reject() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String body = getString(R.string.reject);
                 ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
             }
         }).start();
@@ -237,6 +317,30 @@ public class DialActivity extends AppCompatActivity {
             @Override
             public void run() {
                 String body = getString(R.string.stopShare);
+                ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
+            }
+        }).start();
+    }
+
+    public void wakeUp(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String body = getString(R.string.cameraTiltWakeUp);
+                ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
+            }
+        }).start();
+
+        try {
+            Thread.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String body = getString(R.string.cameraTiltStop);
                 ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
             }
         }).start();

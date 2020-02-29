@@ -97,11 +97,13 @@ public class PhonebookActivity extends AppCompatActivity {
     }
 
     private void fillPhonebook(PhonebookRequest phonebookRequest) {
-        for (Contact note : phonebookRequest.getCommand().getPhonebookSearchResult().getContact()) {
-            mPhonebNames.add(Jsoup.parse(note.getName()).text());
-            mPhonebNumbers.add(note.getContactMethod().getNumber());
-        }
-        initRecyclerView();
+        if (phonebookRequest.getCommand().getPhonebookSearchResult().getContact() != null){
+            for (Contact note : phonebookRequest.getCommand().getPhonebookSearchResult().getContact()) {
+                mPhonebNames.add(Jsoup.parse(note.getName()).text());
+                mPhonebNumbers.add(note.getContactMethod().getNumber());
+            }
+            initRecyclerView();
+        } else return;
     }
 
     private void initRecyclerView() {

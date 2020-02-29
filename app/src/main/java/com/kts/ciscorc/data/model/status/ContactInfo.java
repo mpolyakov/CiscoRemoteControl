@@ -7,20 +7,25 @@ import com.google.gson.annotations.SerializedName;
 
 public class ContactInfo {
 
-    @SerializedName("ContactMethod")
-    @Expose
-    private List<ContactMethod> contactMethod = null;
+//    @SerializedName("ContactMethod")
+//    @Expose
+//    private List<ContactMethod> contactMethod = null;
+//    private ContactMethod contactMethod = null;
     @SerializedName("Name")
     @Expose
     private String name;
 
-    public List<ContactMethod> getContactMethod() {
-        return contactMethod;
-    }
+//    public List<ContactMethod> getContactMethod() {
+//        return contactMethod;
+//    }
 
-    public void setContactMethod(List<ContactMethod> contactMethod) {
-        this.contactMethod = contactMethod;
-    }
+//    public ContactMethod getContactMethod() {
+//        return contactMethod;
+//    }
+
+//    public void setContactMethod(List<ContactMethod> contactMethod) {
+//        this.contactMethod = contactMethod;
+//    }
 
     public String getName() {
         return name;

@@ -158,7 +158,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnMicOn"
-            android:text="mute"
+            android:text="unmute"
             style="@style/buttonsStyle"
             app:cornerRadius="8dp"
             app:icon="@drawable/ic_mic_black_24dp"
@@ -168,7 +168,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnMicOff"
-            android:text="unmute"
+            android:text="mute"
             style="@style/buttonsStyle"
             app:cornerRadius="8dp"
             app:icon="@drawable/ic_mic_off_black_24dp"
