@@ -19,7 +19,6 @@ public class FragmentCameraControl extends Fragment {
     ImageButton imageButtonCamUp, imageButtonCamLeft, imageButtonCamRight, imageButtonCamDown;
     Switch aSwitch;
     final MainPresenter presenter = MainPresenter.getInstance();
-    TextView textView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,7 +33,6 @@ public class FragmentCameraControl extends Fragment {
         imageButtonCamDown = v.findViewById(R.id.imageButton8);
 
         aSwitch = v.findViewById(R.id.switchSpeakerTrack);
-        textView = v.findViewById(R.id.textViewtestwdwd);
 
         if ((ConnectionClass.allCodecsWithSpeakerTrack.contains(presenter.getCodecPlatform()))){
             aSwitch.setEnabled(true);
@@ -59,7 +57,6 @@ public class FragmentCameraControl extends Fragment {
                 // true if the switch is in the On position
                 if (isChecked){
                     switchOnSpeakerTrack();
-                    textView.setText("ST on");
                     aSwitch.setTextOn("SpeakerTrack mode");
                     imageButtonCamUp.setEnabled(false);
                     imageButtonCamLeft.setEnabled(false);
@@ -67,7 +64,6 @@ public class FragmentCameraControl extends Fragment {
                     imageButtonCamDown.setEnabled(false);
                 } else{
                     switchOffSpeakerTrack();
-                    textView.setText("ST off");
                     aSwitch.setTextOff("Manual mode");
                     imageButtonCamUp.setEnabled(true);
                     imageButtonCamLeft.setEnabled(true);
@@ -79,7 +75,7 @@ public class FragmentCameraControl extends Fragment {
 
         imageButtonCamUp.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                textView.setText("Up");
+                imageButtonCamUp.setEnabled(false);
 
                 new Thread(new Runnable() {
                     @Override
@@ -90,7 +86,7 @@ public class FragmentCameraControl extends Fragment {
                 }).start();
 
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(250);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -103,13 +99,19 @@ public class FragmentCameraControl extends Fragment {
                     }
                 }).start();
 
+                try {
+                    Thread.sleep(450);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
+                imageButtonCamUp.setEnabled(true);
             }
         });
 
         imageButtonCamLeft.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                textView.setText("Left");
+                imageButtonCamLeft.setEnabled(false);
 
                 new Thread(new Runnable() {
                     @Override
@@ -120,7 +122,7 @@ public class FragmentCameraControl extends Fragment {
                 }).start();
 
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(250);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -132,12 +134,20 @@ public class FragmentCameraControl extends Fragment {
                         ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
                     }
                 }).start();
+
+                try {
+                    Thread.sleep(450);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                imageButtonCamLeft.setEnabled(true);
             }
         });
 
         imageButtonCamRight.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                textView.setText("Right");
+                imageButtonCamRight.setEnabled(false);
 
                 new Thread(new Runnable() {
                     @Override
@@ -148,7 +158,7 @@ public class FragmentCameraControl extends Fragment {
                 }).start();
 
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(250);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -160,13 +170,21 @@ public class FragmentCameraControl extends Fragment {
                         ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
                     }
                 }).start();
+
+                try {
+                    Thread.sleep(450);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                imageButtonCamRight.setEnabled(true);
             }
 
         });
 
         imageButtonCamDown.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                textView.setText("Down");
+                imageButtonCamDown.setEnabled(false);
 
                 new Thread(new Runnable() {
                     @Override
@@ -177,7 +195,7 @@ public class FragmentCameraControl extends Fragment {
                 }).start();
 
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(250);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -189,6 +207,14 @@ public class FragmentCameraControl extends Fragment {
                         ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
                     }
                 }).start();
+
+                try {
+                    Thread.sleep(450);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                imageButtonCamDown.setEnabled(true);
 
             }
         });

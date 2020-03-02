@@ -85,7 +85,7 @@ public class InfoActivity extends AppCompatActivity {
 
         textName = findViewById(R.id.textViewName);
         textStatus = findViewById(R.id.textViewStatus);
-        textNumber = findViewById(R.id.textViewNumber);
+//        textNumber = findViewById(R.id.textViewNumber);
         textIPaddress = findViewById(R.id.textViewIPaddress);
         textPlatformID = findViewById(R.id.textViewPlatformId);
         textSN = findViewById(R.id.textViewSN);

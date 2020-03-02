@@ -8,22 +8,62 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/history"
-        android:gravity="center_horizontal"
-        android:id="@+id/textViewHistory"
-        android:layout_margin="16dp"
-        android:layout_marginTop="180dp"
-        android:textSize="19sp"
-        android:textStyle="italic"/>
+        android:orientation="vertical"
+        android:id="@+id/topHeaderHistory"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="16dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:id="@+id/delimTop1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+
+            android:gravity="center_horizontal"
+            android:text="@string/history"
+            android:id="@+id/textViewHistory"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:id="@+id/delimTop2"/>
+
+    </LinearLayout>
+
+
+
+
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/history"-->
+<!--        android:gravity="center_horizontal"-->
+<!--        android:id="@+id/textViewHistory"-->
+<!--        android:layout_margin="16dp"-->
+<!--        android:layout_marginTop="180dp"-->
+<!--        android:textSize="19sp"-->
+<!--        android:textStyle="italic"/>-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:layout_below="@+id/textViewHistory"/>
+        android:layout_below="@+id/topHeaderHistory"/>
 
 </RelativeLayout>

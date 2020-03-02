@@ -28,6 +28,7 @@ import com.kts.ciscorc.fragments.FragmentSelfView;
 
 import org.json.JSONObject;
 import org.json.XML;
+import android.media.MediaPlayer;
 
 public class DialActivity extends AppCompatActivity {
     FragmentDial fragmentDial;
@@ -42,12 +43,14 @@ public class DialActivity extends AppCompatActivity {
     String resultXml;
     final Handler handler = new Handler();
     final MainPresenter presenter = MainPresenter.getInstance();
+    MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dial);
         init();
+//        wakeUp(); //Пробудить кодек
 
         //Инициализация меню
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -71,7 +74,9 @@ public class DialActivity extends AppCompatActivity {
                         finish();
                         return true;
                     case R.id.dial:
-                        recreate();
+                        startActivity(new Intent(getApplicationContext(), DialActivity.class));
+                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                        finish();
                         return true;
                 }
                 return false;
@@ -108,7 +113,7 @@ public class DialActivity extends AppCompatActivity {
     }
 
     public void init() {
-//        wakeUp();
+
         fragmentDial = new FragmentDial();
         fragmentSelfView = new FragmentSelfView();
         fragmentCameraControl = new FragmentCameraControl();
@@ -134,10 +139,12 @@ public class DialActivity extends AppCompatActivity {
             actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.appbar_gradient));
         }
 
+        mp = MediaPlayer.create(this, R.raw.clickb5);
+
     }
 
     public void acceptDial(View view) {
-
+        mp.start();
         final Handler handler = new Handler();
         Thread threadStatusRequest = new Thread(new Runnable() {
             @Override
@@ -193,6 +200,7 @@ public class DialActivity extends AppCompatActivity {
     }
 
     public void rejectDisconnect(View view) {
+        mp.start();
         final Handler handler = new Handler();
         Thread threadStatusRequest = new Thread(new Runnable() {
             @Override
@@ -240,12 +248,14 @@ public class DialActivity extends AppCompatActivity {
     }
 
     public void requestDTMF(View view) {
+        mp.start();
         FragmentManager manager = getSupportFragmentManager();
         DtmfDialogFragment dtmfDialogFragment = new DtmfDialogFragment();
         dtmfDialogFragment.show(manager, "DTMF Dialog");
     }
 
     public void volumeIncrease(View view) {
+        mp.start();
         volIncrease.setEnabled(false);
         new Thread(new Runnable() {
             @Override
@@ -255,7 +265,7 @@ public class DialActivity extends AppCompatActivity {
             }
         }).start();
         try {
-            Thread.sleep(600);
+            Thread.sleep(700);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -263,6 +273,8 @@ public class DialActivity extends AppCompatActivity {
     }
 
     public void volumeDecrease(View view) {
+        mp.start();
+        volDecrease.setEnabled(false);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -270,9 +282,16 @@ public class DialActivity extends AppCompatActivity {
                 ConnectionClass.methodPOST(presenter.getIpAddress(), presenter.getLogin(), presenter.getPassword(), body);
             }
         }).start();
+        try {
+            Thread.sleep(700);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        volDecrease.setEnabled(true);
     }
 
     public void volumeToggleMute(View view) {
+        mp.start();
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -283,6 +302,7 @@ public class DialActivity extends AppCompatActivity {
     }
 
     public void micOn(View view) {
+        mp.start();
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -293,6 +313,7 @@ public class DialActivity extends AppCompatActivity {
     }
 
     public void micOff(View view) {
+        mp.start();
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -303,6 +324,7 @@ public class DialActivity extends AppCompatActivity {
     }
 
     public void startShare(View view) {
+        mp.start();
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -313,6 +335,7 @@ public class DialActivity extends AppCompatActivity {
     }
 
     public void stopShare(View view) {
+        mp.start();
         new Thread(new Runnable() {
             @Override
             public void run() {

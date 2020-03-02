@@ -18,7 +18,6 @@ import com.kts.ciscorc.data.ConnectionClass;
 
 public class FragmentSelfView extends Fragment {
     private ToggleButton toggleButtonSV1, toggleButtonSV2, toggleButtonSV3, toggleButtonSV4, toggleButtonSV5, toggleButtonSV6, toggleButtonSV7, toggleButtonSV8, toggleButtonSV9;
-    private TextView textViewtest;
     final MainPresenter presenter = MainPresenter.getInstance();
 
     @Override
@@ -37,18 +36,15 @@ public class FragmentSelfView extends Fragment {
         toggleButtonSV7 = v.findViewById(R.id.toggleSV7);
         toggleButtonSV8 = v.findViewById(R.id.toggleSV8);
         toggleButtonSV9 = v.findViewById(R.id.toggleSV9);
-        textViewtest = v.findViewById(R.id.textViewtest);
 
         toggleButtonSV1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (toggleButtonSV1.isChecked()){
                     setSelfView("UpperLeft");
                     setTButtons(toggleButtonSV1);
-                    textViewtest.setText("UpperLeft");
                 } else {
                     toggleButtonSV1.setChecked(false);
                     removeSelfView();
-                    textViewtest.setText("None1");
                 }
 
             }
@@ -59,11 +55,9 @@ public class FragmentSelfView extends Fragment {
                 if (toggleButtonSV2.isChecked()){
                     setSelfView("UpperCenter");
                     setTButtons(toggleButtonSV2);
-                    textViewtest.setText("UpperCenter");
                 } else {
                     toggleButtonSV2.setChecked(false);
                     removeSelfView();
-                    textViewtest.setText("None2");
                 }
             }
         });
@@ -73,11 +67,9 @@ public class FragmentSelfView extends Fragment {
                 if (toggleButtonSV3.isChecked()){
                     setSelfView("UpperRight");
                     setTButtons(toggleButtonSV3);
-                    textViewtest.setText("UpperRight");
                 } else {
                     toggleButtonSV3.setChecked(false);
                     removeSelfView();
-                    textViewtest.setText("None3");
                 }
             }
         });
@@ -87,11 +79,9 @@ public class FragmentSelfView extends Fragment {
                 if (toggleButtonSV4.isChecked()){
                     setSelfView("CenterLeft");
                     setTButtons(toggleButtonSV4);
-                    textViewtest.setText("CenterLeft");
                 } else {
                     toggleButtonSV4.setChecked(false);
                     removeSelfView();
-                    textViewtest.setText("None4");
                 }
             }
         });
@@ -101,11 +91,9 @@ public class FragmentSelfView extends Fragment {
                 if (toggleButtonSV5.isChecked()){
                     setSelfViewFullscreen();
                     setTButtons(toggleButtonSV5);
-                    textViewtest.setText("FullscreenMode:");
                 } else {
                     toggleButtonSV5.setChecked(false);
                     removeSelfView();
-                    textViewtest.setText("None5");
                 }
             }
         });
@@ -115,11 +103,9 @@ public class FragmentSelfView extends Fragment {
                 if (toggleButtonSV6.isChecked()){
                     setSelfView("CenterRight");
                     setTButtons(toggleButtonSV6);
-                    textViewtest.setText("CenterRight");
                 } else {
                     toggleButtonSV6.setChecked(false);
                     removeSelfView();
-                    textViewtest.setText("None6");
                 }
             }
         });
@@ -129,11 +115,9 @@ public class FragmentSelfView extends Fragment {
                 if (toggleButtonSV7.isChecked()){
                     setSelfView("LowerLeft");
                     setTButtons(toggleButtonSV7);
-                    textViewtest.setText("LowerLeft");
                 } else {
                     toggleButtonSV7.setChecked(false);
                     removeSelfView();
-                    textViewtest.setText("None7");
                 }
             }
         });
@@ -148,11 +132,9 @@ public class FragmentSelfView extends Fragment {
                 if (toggleButtonSV9.isChecked()){
                     setSelfView("LowerRight");
                     setTButtons(toggleButtonSV9);
-                    textViewtest.setText("LowerRight");
                 } else {
                     toggleButtonSV9.setChecked(false);
                     removeSelfView();
-                    textViewtest.setText("None9");
                 }
             }
         });

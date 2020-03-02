@@ -11,14 +11,7 @@
     android:background="?android:attr/selectableItemBackground">
 
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="2dp"
-        android:id="@+id/delim1" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,8 +27,8 @@
             android:text="Имя абонента"
             android:id="@+id/textViewNameOfParticipant"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:textSize="15sp"
+            android:layout_marginTop="4dp"
+            android:textSize="16sp"
             android:layout_below="@id/delim1"
             android:textStyle="bold"/>
 
@@ -47,11 +40,22 @@
             android:id="@+id/textViewNumberOfParticipant"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="2dp"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:textStyle="italic"
             />
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="8dp"
+        android:id="@+id/delim1"
+        android:layout_below="@+id/linearLayoutItem"/>
 
 
     <ImageView
@@ -66,6 +70,8 @@
         android:layout_marginBottom="8dp"
         android:tint="@color/colorMainDark"
         app:srcCompat="@drawable/ic_call_black_24dp" />
+
+
 
 
 </RelativeLayout>

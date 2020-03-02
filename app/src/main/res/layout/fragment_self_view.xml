@@ -5,12 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".fragments.FragmentSelfView">
 
-    <TextView
-        android:id="@+id/textViewtest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="20sp" />
+
 
     <LinearLayout
         android:layout_width="match_parent"

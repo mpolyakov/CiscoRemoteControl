@@ -76,7 +76,9 @@ public class ConnectionClass {
             connection.setRequestMethod("GET");
             connection.setConnectTimeout(5000);
             connection.connect();
-            return connection.getResponseMessage();
+            String returnBack = connection.getResponseMessage();
+            connection.disconnect();
+            return returnBack;
 
         } catch (SocketTimeoutException e) {
             return e.toString() + " Endpoint does not responding";
@@ -91,7 +93,7 @@ public class ConnectionClass {
     }
 
     public static String methodGET(String ipaddress, String login, String password, String uriGet) {
-        disableSslVerification();
+//        disableSslVerification();
         String uri = null;
         try {
             uri = "https://" + ipaddress + uriGet;
@@ -112,17 +114,18 @@ public class ConnectionClass {
             while ((line = in.readLine()) != null) {
                 result += line;
             }
+            connection.disconnect();
             return result;
 
         } catch (SocketTimeoutException e) {
-            return e.toString() + " Видеотерминал не отвечает";
+            return e.toString() + " Endpoint does not responding";
         } catch (UnknownHostException e) {
-            return e.toString() + " Неизвестный хост";
+            return e.toString() + " Uncknown host";
         } catch (IOException e) {
-            return e.toString() + " Запрос не авторизован";
+            return e.toString() + " Request unautorized";
         } catch (Exception e) {
             e.printStackTrace();
-            return e.toString() + " Видеотерминал не отвечает";
+            return e.toString() + " Endpoint does not responding";
         }
     }
 
