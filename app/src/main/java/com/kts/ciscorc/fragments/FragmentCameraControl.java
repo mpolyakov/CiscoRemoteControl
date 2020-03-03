@@ -116,7 +116,7 @@ public class FragmentCameraControl extends Fragment {
                 }).start();
 
                 try {
-                    Thread.sleep(10);
+                    Thread.sleep(900);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -153,7 +153,7 @@ public class FragmentCameraControl extends Fragment {
                 }).start();
 
                 try {
-                    Thread.sleep(10);
+                    Thread.sleep(900);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -190,7 +190,7 @@ public class FragmentCameraControl extends Fragment {
                 }).start();
 
                 try {
-                    Thread.sleep(10);
+                    Thread.sleep(900);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -228,7 +228,7 @@ public class FragmentCameraControl extends Fragment {
                 }).start();
 
                 try {
-                    Thread.sleep(10);
+                    Thread.sleep(900);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -264,7 +264,7 @@ public class FragmentCameraControl extends Fragment {
                 }).start();
 
                 try {
-                    Thread.sleep(10);
+                    Thread.sleep(900);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -300,7 +300,7 @@ public class FragmentCameraControl extends Fragment {
                 }).start();
 
                 try {
-                    Thread.sleep(10);
+                    Thread.sleep(900);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

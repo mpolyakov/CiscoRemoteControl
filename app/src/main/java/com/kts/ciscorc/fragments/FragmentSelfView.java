@@ -1,5 +1,6 @@
 package com.kts.ciscorc.fragments;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -19,12 +20,14 @@ import com.kts.ciscorc.data.ConnectionClass;
 public class FragmentSelfView extends Fragment {
     private ToggleButton toggleButtonSV1, toggleButtonSV2, toggleButtonSV3, toggleButtonSV4, toggleButtonSV5, toggleButtonSV6, toggleButtonSV7, toggleButtonSV8, toggleButtonSV9;
     final MainPresenter presenter = MainPresenter.getInstance();
+    private MediaPlayer mp;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+        mp = MediaPlayer.create(getContext(), R.raw.clickb5);
         View v = inflater.inflate(R.layout.fragment_self_view, container, false);
 
         toggleButtonSV1 = v.findViewById(R.id.toggleSV1);
@@ -39,6 +42,7 @@ public class FragmentSelfView extends Fragment {
 
         toggleButtonSV1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                mp.start();
                 if (toggleButtonSV1.isChecked()){
                     setSelfView("UpperLeft");
                     setTButtons(toggleButtonSV1);
@@ -52,6 +56,7 @@ public class FragmentSelfView extends Fragment {
 
         toggleButtonSV2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                mp.start();
                 if (toggleButtonSV2.isChecked()){
                     setSelfView("UpperCenter");
                     setTButtons(toggleButtonSV2);
@@ -64,6 +69,7 @@ public class FragmentSelfView extends Fragment {
 
         toggleButtonSV3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                mp.start();
                 if (toggleButtonSV3.isChecked()){
                     setSelfView("UpperRight");
                     setTButtons(toggleButtonSV3);
@@ -76,6 +82,7 @@ public class FragmentSelfView extends Fragment {
 
         toggleButtonSV4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                mp.start();
                 if (toggleButtonSV4.isChecked()){
                     setSelfView("CenterLeft");
                     setTButtons(toggleButtonSV4);
@@ -88,6 +95,7 @@ public class FragmentSelfView extends Fragment {
 
         toggleButtonSV5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                mp.start();
                 if (toggleButtonSV5.isChecked()){
                     setSelfViewFullscreen();
                     setTButtons(toggleButtonSV5);
@@ -100,6 +108,7 @@ public class FragmentSelfView extends Fragment {
 
         toggleButtonSV6.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                mp.start();
                 if (toggleButtonSV6.isChecked()){
                     setSelfView("CenterRight");
                     setTButtons(toggleButtonSV6);
@@ -112,6 +121,7 @@ public class FragmentSelfView extends Fragment {
 
         toggleButtonSV7.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                mp.start();
                 if (toggleButtonSV7.isChecked()){
                     setSelfView("LowerLeft");
                     setTButtons(toggleButtonSV7);
@@ -129,6 +139,7 @@ public class FragmentSelfView extends Fragment {
 
         toggleButtonSV9.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                mp.start();
                 if (toggleButtonSV9.isChecked()){
                     setSelfView("LowerRight");
                     setTButtons(toggleButtonSV9);

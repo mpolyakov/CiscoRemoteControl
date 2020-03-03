@@ -1,5 +1,6 @@
 package com.kts.ciscorc;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -46,6 +47,7 @@ public class RecyclerViewAdapterPhonebook extends RecyclerView.Adapter<RecyclerV
                 Intent intent  = new Intent(mContext, DialActivity.class);
                 intent.putExtra("address_of_remote_endpoint", mPhonebookNumbers.get(position));
                 mContext.startActivity(intent);
+                ((Activity)mContext).finish();
 
             }
         });

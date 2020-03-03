@@ -30,6 +30,7 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:text="ABOUT THE DEVICE"
+            android:textStyle="italic"
             android:gravity="center_horizontal"
             android:id="@+id/textInfoHead"/>
 
@@ -59,7 +60,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
-            android:text="Name" />
+            android:text="Name"
+            android:textSize="14sp"/>
         <TextView
             android:id="@+id/textViewName"
             android:layout_width="match_parent"
@@ -67,7 +69,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
-            android:textStyle="italic"/>
+            android:textStyle="italic"
+            android:textSize="15sp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -83,7 +86,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
-            android:text="Status" />
+            android:text="Status"
+            android:textSize="14sp"/>
         <TextView
             android:id="@+id/textViewStatus"
             android:layout_width="match_parent"
@@ -91,7 +95,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
-            android:textStyle="italic"/>
+            android:textStyle="italic"
+            android:textSize="15sp"/>
     </LinearLayout>
 
 <!--    <LinearLayout-->
@@ -130,7 +135,8 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_weight="1"
-        android:text="IP address" />
+        android:text="IP address"
+        android:textSize="14sp"/>
     <TextView
         android:id="@+id/textViewIPaddress"
         android:layout_width="match_parent"
@@ -138,7 +144,8 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_weight="1"
-        android:textStyle="italic"/>
+        android:textStyle="italic"
+        android:textSize="15sp"/>
     </LinearLayout>
 
     <View
@@ -166,7 +173,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
-            android:text="Model" />
+            android:text="Model"
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/textViewPlatformId"
@@ -175,7 +183,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
-            android:textStyle="italic"/>
+            android:textStyle="italic"
+            android:textSize="15sp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -192,7 +201,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
-            android:text="Serial number" />
+            android:text="Serial number"
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/textViewSN"
@@ -201,7 +211,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
-            android:textStyle="italic"/>
+            android:textStyle="italic"
+            android:textSize="15sp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -218,7 +229,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
-            android:text="Software Version" />
+            android:text="Software Version"
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/textViewSoftware"
@@ -227,7 +239,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
-            android:textStyle="italic"/>
+            android:textStyle="italic"
+            android:textSize="15sp"/>
     </LinearLayout>
 
     <View
@@ -255,7 +268,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
-            android:text="Encryption License" />
+            android:text="Encryption License"
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/textViewEncryption"
@@ -264,7 +278,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
-            android:textStyle="italic"/>
+            android:textStyle="italic"
+            android:textSize="15sp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -281,7 +296,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
-            android:text="Multisite License" />
+            android:text="Multisite License"
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/textViewMultisite"
@@ -290,7 +306,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
-            android:textStyle="italic"/>
+            android:textStyle="italic"
+            android:textSize="15sp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -307,7 +324,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
-            android:text="Remote Monitoring License" />
+            android:text="Remote Monitoring License"
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/textViewRemoteMon"
@@ -316,7 +334,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
-            android:textStyle="italic"/>
+            android:textStyle="italic"
+            android:textSize="15sp"/>
     </LinearLayout>
 
 

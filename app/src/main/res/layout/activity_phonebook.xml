@@ -30,6 +30,7 @@
             android:textSize="16sp"
             android:gravity="center_horizontal"
             android:text="PHONEBOOK"
+            android:textStyle="italic"
             android:id="@+id/textPhonebHead"/>
 
         <View
