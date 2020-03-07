@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorMainDark</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="toolbarStyle">@style/CustomToolBarStyle</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -37,6 +38,10 @@
 
         <!-- inactive track color (30% transparency) -->
         <item name="android:colorForeground">#42221f1f</item>
+    </style>
+
+    <style name="CustomToolBarStyle" parent="@style/Widget.AppCompat.Toolbar">
+        <item name="titleTextColor">@color/white</item>
     </style>
 
 </resources>

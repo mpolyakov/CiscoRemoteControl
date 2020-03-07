@@ -28,6 +28,7 @@ import com.kts.ciscorc.fragments.FragmentSelfView;
 
 import org.json.JSONObject;
 import org.json.XML;
+
 import android.media.MediaPlayer;
 
 public class DialActivity extends AppCompatActivity {
@@ -74,9 +75,7 @@ public class DialActivity extends AppCompatActivity {
                         finish();
                         return true;
                     case R.id.dial:
-                        startActivity(new Intent(getApplicationContext(), DialActivity.class));
-                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                        finish();
+                        wakeUp();
                         return true;
                 }
                 return false;
@@ -171,7 +170,7 @@ public class DialActivity extends AppCompatActivity {
         threadStatusRequest.start();
     }
 
-    public void dial(){
+    public void dial() {
         final String[] arr = ((Spinner) fragmentDial.getView().findViewById(R.id.spinner2)).getSelectedItem().toString().split(" ");
 
         new Thread(new Runnable() {
@@ -345,7 +344,7 @@ public class DialActivity extends AppCompatActivity {
         }).start();
     }
 
-    public void wakeUp(){
+    public void wakeUp() {
         new Thread(new Runnable() {
             @Override
             public void run() {

@@ -81,14 +81,14 @@ public class ConnectionClass {
             return returnBack;
 
         } catch (SocketTimeoutException e) {
-            return e.toString() + " Endpoint does not responding";
+            return "Endpoint does not responding";
         } catch (UnknownHostException e) {
-            return " Uncknown host";
+            return "Uncknown host";
         } catch (IOException e) {
-            return e.toString() + " Request unautorized";
+            return "Request unautorized";
         } catch (Exception e) {
             e.printStackTrace();
-            return e.toString() + " Endpoint does not responding";
+            return "Endpoint does not responding";
         }
     }
 
@@ -118,14 +118,14 @@ public class ConnectionClass {
             return result;
 
         } catch (SocketTimeoutException e) {
-            return e.toString() + " Endpoint does not responding";
+            return "Endpoint does not responding";
         } catch (UnknownHostException e) {
-            return e.toString() + " Uncknown host";
+            return "Uncknown host";
         } catch (IOException e) {
-            return e.toString() + " Request unautorized";
+            return "Request unautorized";
         } catch (Exception e) {
             e.printStackTrace();
-            return e.toString() + " Endpoint does not responding";
+            return "Endpoint does not responding";
         }
     }
 
@@ -160,14 +160,14 @@ public class ConnectionClass {
             return result;
 
         } catch (SocketTimeoutException e) {
-            return e.toString() + " Видеотерминал не отвечает";
+            return "Endpoint does not responding";
         } catch (UnknownHostException e) {
-            return e.toString() + " Неизвестный хост";
+            return "Uncknown host";
         } catch (IOException e) {
-            return e.toString() + " Запрос не авторизован";
+            return "Request unautorized";
         } catch (Exception e) {
             e.printStackTrace();
-            return e.toString() + " Видеотерминал не отвечает";
+            return "Endpoint does not responding";
         }
 
     }
