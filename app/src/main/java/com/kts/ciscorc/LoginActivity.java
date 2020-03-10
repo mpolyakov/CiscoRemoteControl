@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import android.os.Handler;
@@ -66,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         mPassword = findViewById(R.id.textInputPassword);
         mButtonConnect = findViewById(R.id.material_button);
         mTextView = findViewById(R.id.textViewConnStatus);
+        getWindow().getDecorView().setBackgroundColor(Color.WHITE);
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null){

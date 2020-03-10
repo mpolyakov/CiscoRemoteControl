@@ -51,7 +51,7 @@ public class DialActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dial);
         init();
-//        wakeUp(); //Пробудить кодек
+        wakeUp(); //Пробудить кодек
 
         //Инициализация меню
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);

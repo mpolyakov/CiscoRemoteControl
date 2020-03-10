@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
@@ -35,6 +36,7 @@ public class PhonebookActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phonebook);
+        getWindow().getDecorView().setBackgroundColor(Color.WHITE);
         final MainPresenter presenter = MainPresenter.getInstance();
 
         ActionBar actionBar = getSupportActionBar();
